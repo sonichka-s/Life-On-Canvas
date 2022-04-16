@@ -27,7 +27,6 @@ private:
     void Create(); // create canvas
     void Read(); // not sure for this
     void Insert(Pixel pixel); // pull changes to canvas/DB
-    void Update(Pixel pixel); // push changes to other users
     void Delete(); // for delete canvas
     void CloseConnection(); // break the connection
 };
