@@ -1,10 +1,10 @@
 name: CIforDB
 
 on:
-  push:
+#   push:
 #     branches: [DataBase]
-#   pull_request:
-#     branches: [DataBase]
+  pull_request:
+    branches: [DataBase]
 
 env:
   BUILD_TYPE: Release
