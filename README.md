@@ -1,3 +1,3 @@
 # Life-On-Canvas
 
-There should be used mongoDB C++
+It will be implemented using MongoDB and its driver for C++
