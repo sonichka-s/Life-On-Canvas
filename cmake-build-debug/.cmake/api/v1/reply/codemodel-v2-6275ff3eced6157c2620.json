@@ -71,7 +71,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Server-Debug-227bc780e10bb699ad90.json",
+					"jsonFile" : "target-Server-Debug-80bb782b2404e2bb25a2.json",
 					"name" : "Server",
 					"projectIndex" : 0
 				}
@@ -81,8 +81,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/sonichka/Life-On-Canvas/cmake-build-debug",
-		"source" : "/home/sonichka/Life-On-Canvas"
+		"build" : "/home/sonichka/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/Life-On-Canvas/cmake-build-debug",
+		"source" : "/home/sonichka/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/Life-On-Canvas"
 	},
 	"version" : 
 	{

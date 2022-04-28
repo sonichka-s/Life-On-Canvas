@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/Server.dir/src/server/server.cpp.o -o Server   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lhttpserver 

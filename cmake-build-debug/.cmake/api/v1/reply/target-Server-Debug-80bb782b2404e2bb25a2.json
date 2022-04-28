@@ -10,8 +10,7 @@
 	{
 		"commands" : 
 		[
-			"add_executable",
-			"target_link_libraries"
+			"add_executable"
 		],
 		"files" : 
 		[
@@ -26,12 +25,6 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 7,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 8,
 				"parent" : 0
 			}
 		]
@@ -77,12 +70,15 @@
 				"role" : "flags"
 			},
 			{
+				"fragment" : "-L/usr/local/lib",
+				"role" : "libraryPath"
+			},
+			{
 				"fragment" : "-Wl,-rpath,/usr/local/lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 2,
-				"fragment" : "/usr/local/lib/libhttpserver.so",
+				"fragment" : "-lhttpserver",
 				"role" : "libraries"
 			}
 		],
