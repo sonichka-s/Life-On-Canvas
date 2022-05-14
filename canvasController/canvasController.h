@@ -19,17 +19,23 @@
 #include "serializer.h"
 #include "networkController.h"
 
+
+
 class CanvasController {
 
 public:
-    CanvasController(QMainWindow* mainWindow, NetworkController* netMng, Serializer serializer);
+    CanvasController(QGraphicsScene* mainScene);
     ~CanvasController();
 private:
-
-    QMainWindow* mv;
+    QGraphicsScene* mc;
     NetworkController* netMng;
     Serializer* serializer;
+    int CanvasId;
 
+
+    int initCanvas();
+
+    void mousePressed(QMouseEvent *event);
 private slots:
 
 

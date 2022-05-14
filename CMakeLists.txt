@@ -23,5 +23,7 @@ add_subdirectory(canvasController)
 add_subdirectory(serializer)
 add_subdirectory(networkController)
 
-target_link_libraries(clientLoC LINK_PUBLIC canvasController networkController)
+add_subdirectory(draw)
+
+target_link_libraries(clientLoC LINK_PUBLIC canvasController networkController draw)
 #add_subdirectory(tests)

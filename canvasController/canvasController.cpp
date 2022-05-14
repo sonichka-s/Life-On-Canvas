@@ -3,6 +3,7 @@
 //
 #include "canvasController.h"
 
-CanvasController::CanvasController(QMainWindow *mainWindow, NetworkController *netMng, Serializer serializer) {
-    QObject::connect(mainWindow,  )
+CanvasController::CanvasController(QGraphicsScene* mainscene) {
+
 }
+
