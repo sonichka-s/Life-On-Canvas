@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/189/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/190/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/189/bin/cmake/linux/bin/cmake -E rm -f
+RM = /snap/clion/190/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sonichka/Документы/Life-On-Canvas
+CMAKE_SOURCE_DIR = /home/sonichka/Documents/Life-On-Canvas
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/sonichka/Документы/Life-On-Canvas/cmake-build-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/189/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/190/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/189/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/190/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/CMakeFiles /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/src/server//CMakeFiles/progress.marks
-	cd /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/CMakeFiles 0
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/server//CMakeFiles/progress.marks
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/clean
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,18 +103,128 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/preinstall
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/preinstall
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+src/server/CMakeFiles/server.dir/rule:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/CMakeFiles/server.dir/rule
+.PHONY : src/server/CMakeFiles/server.dir/rule
+
+# Convenience name for target.
+server: src/server/CMakeFiles/server.dir/rule
+.PHONY : server
+
+# fast build rule for target.
+server/fast:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/build
+.PHONY : server/fast
+
+acceptor.o: acceptor.cpp.o
+.PHONY : acceptor.o
+
+# target to build an object file
+acceptor.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/acceptor.cpp.o
+.PHONY : acceptor.cpp.o
+
+acceptor.i: acceptor.cpp.i
+.PHONY : acceptor.i
+
+# target to preprocess a source file
+acceptor.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/acceptor.cpp.i
+.PHONY : acceptor.cpp.i
+
+acceptor.s: acceptor.cpp.s
+.PHONY : acceptor.s
+
+# target to generate assembly for a file
+acceptor.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/acceptor.cpp.s
+.PHONY : acceptor.cpp.s
+
+connection.o: connection.cpp.o
+.PHONY : connection.o
+
+# target to build an object file
+connection.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/connection.cpp.o
+.PHONY : connection.cpp.o
+
+connection.i: connection.cpp.i
+.PHONY : connection.i
+
+# target to preprocess a source file
+connection.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/connection.cpp.i
+.PHONY : connection.cpp.i
+
+connection.s: connection.cpp.s
+.PHONY : connection.s
+
+# target to generate assembly for a file
+connection.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/connection.cpp.s
+.PHONY : connection.cpp.s
+
+listener.o: listener.cpp.o
+.PHONY : listener.o
+
+# target to build an object file
+listener.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/listener.cpp.o
+.PHONY : listener.cpp.o
+
+listener.i: listener.cpp.i
+.PHONY : listener.i
+
+# target to preprocess a source file
+listener.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/listener.cpp.i
+.PHONY : listener.cpp.i
+
+listener.s: listener.cpp.s
+.PHONY : listener.s
+
+# target to generate assembly for a file
+listener.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/listener.cpp.s
+.PHONY : listener.cpp.s
+
+server.o: server.cpp.o
+.PHONY : server.o
+
+# target to build an object file
+server.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/server.cpp.o
+.PHONY : server.cpp.o
+
+server.i: server.cpp.i
+.PHONY : server.i
+
+# target to preprocess a source file
+server.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/server.cpp.i
+.PHONY : server.cpp.i
+
+server.s: server.cpp.s
+.PHONY : server.s
+
+# target to generate assembly for a file
+server.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/server.cpp.s
+.PHONY : server.cpp.s
 
 # Help Target
 help:
@@ -124,6 +234,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... server"
+	@echo "... acceptor.o"
+	@echo "... acceptor.i"
+	@echo "... acceptor.s"
+	@echo "... connection.o"
+	@echo "... connection.i"
+	@echo "... connection.s"
+	@echo "... listener.o"
+	@echo "... listener.i"
+	@echo "... listener.s"
+	@echo "... server.o"
+	@echo "... server.i"
+	@echo "... server.s"
 .PHONY : help
 
 
@@ -135,6 +258,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

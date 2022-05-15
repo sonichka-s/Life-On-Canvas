@@ -1,4 +1,4 @@
-# Install script for directory: /home/sonichka/Документы/Life-On-Canvas/src/server
+# Install script for directory: /home/sonichka/Documents/Life-On-Canvas/src/server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

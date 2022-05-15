@@ -1,7 +1,8 @@
-/home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/CMakeFiles/Server.dir
-/home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/src/CMakeFiles/edit_cache.dir
-/home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
-/home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/src/server/CMakeFiles/edit_cache.dir
-/home/sonichka/Документы/Life-On-Canvas/cmake-build-debug/src/server/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles/Server.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/server/CMakeFiles/server.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/server/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/server/CMakeFiles/rebuild_cache.dir

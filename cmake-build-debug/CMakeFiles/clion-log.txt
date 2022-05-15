@@ -1,4 +1,18 @@
-/snap/clion/189/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/sonichka/Документы/Life-On-Canvas -B /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/sonichka/Документы/Life-On-Canvas/cmake-build-debug
+/snap/clion/190/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/sonichka/Documents/Life-On-Canvas -B /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug
+CMake Error at src/CMakeLists.txt:13 (target_include_directories):
+  Cannot specify include directories for target "src" which is not built by
+  this project.
+
+
+CMake Error at src/CMakeLists.txt:14 (target_include_directories):
+  Cannot specify include directories for target "src" which is not built by
+  this project.
+
+
+CMake Error at src/CMakeLists.txt:15 (target_link_libraries):
+  Cannot specify link libraries for target "src" which is not built by this
+  project.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles/CMakeOutput.log".

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libserver.a CMakeFiles/server.dir/server.cpp.o CMakeFiles/server.dir/connection.cpp.o CMakeFiles/server.dir/acceptor.cpp.o CMakeFiles/server.dir/listener.cpp.o
+/usr/bin/ranlib libserver.a
