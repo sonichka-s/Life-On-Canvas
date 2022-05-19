@@ -1,3 +1,3 @@
 # "Life On Canvas"
 Online drawing service.
-TP c++ project, dpring 2022.
+TP c++ project, spring 2022.
