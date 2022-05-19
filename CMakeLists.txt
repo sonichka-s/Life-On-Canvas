@@ -19,11 +19,8 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(clientLoC main.cpp)
 
-add_subdirectory(canvasController)
-add_subdirectory(serializer)
-add_subdirectory(networkController)
-
+add_subdirectory(client)
 add_subdirectory(draw)
 
-target_link_libraries(clientLoC LINK_PUBLIC canvasController networkController draw)
+target_link_libraries(clientLoC LINK_PUBLIC  canvasController networkController draw)
 #add_subdirectory(tests)
