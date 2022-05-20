@@ -1,42 +1,45 @@
-//
-// Created by egornulllet on 20.04.22.
-//
 
 #ifndef LIFE_ON_CANVAS_CANVASCONTROLLER_H
 #define LIFE_ON_CANVAS_CANVASCONTROLLER_H
 
 #include <QCoreApplication>
 #include <QDebug>
-#include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QTcpSocket>
 #include <QUrl>
-#include <QUrlQuery>
-#include <QMainWindow>
 #include <QGraphicsScene>
 #include <QObject>
+#include <QMouseEvent>
 
 #include "serializer.h"
 #include "networkController.h"
 
 
 
-class CanvasController {
-
+class CanvasController: public QObject{
+    Q_OBJECT
 public:
+
     CanvasController(QGraphicsScene* mainScene);
     ~CanvasController();
+
 private:
-    QGraphicsScene* mc;
-    NetworkController* netMng;
+
+    QGraphicsScene* mainScene;
     Serializer* serializer;
     int CanvasId;
-
-
     int initCanvas();
-
     void mousePressed(QMouseEvent *event);
-private slots:
+
+    void sendData();
+
+    QTcpSocket* socket;
+public slots:
+
+    void onReadyRead();
+    void connected();
+    void disconnected();
 
 
 

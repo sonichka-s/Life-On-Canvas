@@ -7,7 +7,7 @@
 
 #include <string>
 #include <nlohmann/json.hpp>
-#include "canvasController.h"
+//#include "canvasController.h"
 
 using namespace nlohmann;
 
@@ -15,6 +15,9 @@ struct Point {
     unsigned int xCoord;
     unsigned int yCoord;
     unsigned int RGBcolor;
+
+    void from_json(const json &j, Point &point);
+
 
     Point():xCoord ( 0 ), yCoord ( 0 ), RGBcolor ( 0 ) {}
 };
