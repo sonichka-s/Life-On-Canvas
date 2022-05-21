@@ -3,3 +3,5 @@ cmake-build-debug
 CMakeLists.txt
 draw
 main.cpp
+!*/CMakeLists.txt
+!*/*/CMakeLists.txt
