@@ -11,6 +11,7 @@
 #include <QGraphicsScene>
 #include <QObject>
 #include <QMouseEvent>
+#include <QHostAddress>
 
 #include "serializer.h"
 #include "networkController.h"
@@ -21,31 +22,35 @@ class CanvasController: public QObject{
     Q_OBJECT
 public:
 
-    CanvasController(QGraphicsScene* mainScene);
+    explicit CanvasController(QGraphicsScene* mainScene);
     ~CanvasController();
 
 private:
 
     QGraphicsScene* mainScene;
     Serializer* serializer;
-    int CanvasId;
-    int initCanvas();
+    QTcpSocket* socket;
+    unsigned int CanvasId;
+
+    unsigned int initCanvas();
+    unsigned int getCanvasById(int canvasID);
+
+    void sendDiff();
+
     void mousePressed(QMouseEvent *event);
 
-    void sendData();
 
-    QTcpSocket* socket;
 public slots:
 
     void onReadyRead();
     void connected();
     void disconnected();
-
+    void onReceivedMesage(nlohmann::json inJson);
 
 
 signals:
 
-    void receivedToRender();
+    void receivedToRender(nlohmann::json inJson);
 
 };
 

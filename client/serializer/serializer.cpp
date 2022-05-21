@@ -4,21 +4,25 @@
 
 void Serializer::parseCanvas(const std::string& inJson_str, std::vector<Point>& canvasArr) {
 
-    json j = json::parse(inJson_str.c_str());
+    nlohmann::json j = nlohmann::json::parse(inJson_str);
 
     j["Points"].get_to<std::vector<Point>>(canvasArr);
 };
 
-void Point::from_json(const json &j, Point &point) {
-    j.at("x").get_to(point.xCoord);
-    j.at("y").get_to(point.yCoord);
-    j.at("color").get_to(point.RGBcolor);
+nlohmann::json Serializer::serializeDiff(const std::vector<Point>& points, unsigned int canvasId) {
+
+    nlohmann::json j;
+    j["Type"] = "Put";
+    j["Points"] = points;
+    j["canvasId"] = canvasId;
+    return j;
 }
 
 
 
 int Serializer::parseId(std::string inJson_str) {
-    json j = json::parse(inJson_str.c_str());
+
+    nlohmann::json j = nlohmann::json::parse(inJson_str);
     int canvasId;
     j.at("canvasId").get_to(canvasId);
     return canvasId;
