@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Server
-
-# Build rule for target.
-Server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Server
-.PHONY : Server
-
-# fast build rule for target.
-Server/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/build
-.PHONY : Server/fast
-
-#=============================================================================
 # Target rules for targets named server
 
 # Build rule for target.
@@ -139,32 +126,45 @@ server: cmake_check_build_system
 
 # fast build rule for target.
 server/fast:
-	$(MAKE) $(MAKESILENT) -f src/server/CMakeFiles/server.dir/build.make src/server/CMakeFiles/server.dir/build
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-src/server/server.o: src/server/server.cpp.o
-.PHONY : src/server/server.o
+#=============================================================================
+# Target rules for targets named server_lib
+
+# Build rule for target.
+server_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server_lib
+.PHONY : server_lib
+
+# fast build rule for target.
+server_lib/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/build
+.PHONY : server_lib/fast
+
+main/main.o: main/main.cpp.o
+.PHONY : main/main.o
 
 # target to build an object file
-src/server/server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/src/server/server.cpp.o
-.PHONY : src/server/server.cpp.o
+main/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main/main.cpp.o
+.PHONY : main/main.cpp.o
 
-src/server/server.i: src/server/server.cpp.i
-.PHONY : src/server/server.i
+main/main.i: main/main.cpp.i
+.PHONY : main/main.i
 
 # target to preprocess a source file
-src/server/server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/src/server/server.cpp.i
-.PHONY : src/server/server.cpp.i
+main/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main/main.cpp.i
+.PHONY : main/main.cpp.i
 
-src/server/server.s: src/server/server.cpp.s
-.PHONY : src/server/server.s
+main/main.s: main/main.cpp.s
+.PHONY : main/main.s
 
 # target to generate assembly for a file
-src/server/server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/src/server/server.cpp.s
-.PHONY : src/server/server.cpp.s
+main/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main/main.cpp.s
+.PHONY : main/main.cpp.s
 
 # Help Target
 help:
@@ -174,11 +174,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Server"
 	@echo "... server"
-	@echo "... src/server/server.o"
-	@echo "... src/server/server.i"
-	@echo "... src/server/server.s"
+	@echo "... server_lib"
+	@echo "... main/main.o"
+	@echo "... main/main.i"
+	@echo "... main/main.s"
 .PHONY : help
 
 

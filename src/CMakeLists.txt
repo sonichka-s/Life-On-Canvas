@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Life-On_Canvas CXX)
+project(server_lib CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -8,8 +8,10 @@ find_package(Boost)
 find_package(Threads REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_executable(${PROJECT_NAME} ${SOURCES} include/connection.h include/listener.h server/websocket_session.cpp server/listener.cpp)
+file(GLOB_RECURSE local_sources ${CMAKE_CURRENT_SOURCE_DIR}/server/*.cpp)
+set(SOURCES ${local_sources})
 
-target_include_directories(src PUBLIC include)
-target_include_directories(src PRIVATE server)
-target_link_libraries(src ${Boost_LIBRARIES} Threads::Threads)
+add_library(server_lib ${SOURCES})
+target_include_directories(server_lib PUBLIC include)
+target_include_directories(server_lib PRIVATE server)
+target_link_libraries(server_lib ${Boost_LIBRARIES} Threads::Threads)

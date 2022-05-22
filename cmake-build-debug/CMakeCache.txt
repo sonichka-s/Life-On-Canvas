@@ -162,7 +162,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=TestServer
+CMAKE_PROJECT_NAME:STATIC=server
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -226,32 +226,32 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Value Computed by CMake
-Life-On_Canvas_BINARY_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src
-
-//Value Computed by CMake
-Life-On_Canvas_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-Life-On_Canvas_SOURCE_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas/src
-
 //Path to a program.
 ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc
 
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
-//Value Computed by CMake
-TestServer_BINARY_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug
-
-//Value Computed by CMake
-TestServer_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-TestServer_SOURCE_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas
-
 //The directory containing a CMake configuration file for boost_headers.
 boost_headers_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0
+
+//Value Computed by CMake
+server_BINARY_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug
+
+//Value Computed by CMake
+server_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+server_SOURCE_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas
+
+//Value Computed by CMake
+server_lib_BINARY_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src
+
+//Value Computed by CMake
+server_lib_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+server_lib_SOURCE_DIR:STATIC=/home/sonichka/Documents/Life-On-Canvas/src
 
 
 ########################

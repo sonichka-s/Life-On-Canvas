@@ -116,6 +116,116 @@ depend:
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+src/CMakeFiles/server_lib.dir/rule:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/server_lib.dir/rule
+.PHONY : src/CMakeFiles/server_lib.dir/rule
+
+# Convenience name for target.
+server_lib: src/CMakeFiles/server_lib.dir/rule
+.PHONY : server_lib
+
+# fast build rule for target.
+server_lib/fast:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/build
+.PHONY : server_lib/fast
+
+server/deserializer.o: server/deserializer.cpp.o
+.PHONY : server/deserializer.o
+
+# target to build an object file
+server/deserializer.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o
+.PHONY : server/deserializer.cpp.o
+
+server/deserializer.i: server/deserializer.cpp.i
+.PHONY : server/deserializer.i
+
+# target to preprocess a source file
+server/deserializer.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/deserializer.cpp.i
+.PHONY : server/deserializer.cpp.i
+
+server/deserializer.s: server/deserializer.cpp.s
+.PHONY : server/deserializer.s
+
+# target to generate assembly for a file
+server/deserializer.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/deserializer.cpp.s
+.PHONY : server/deserializer.cpp.s
+
+server/listener.o: server/listener.cpp.o
+.PHONY : server/listener.o
+
+# target to build an object file
+server/listener.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/listener.cpp.o
+.PHONY : server/listener.cpp.o
+
+server/listener.i: server/listener.cpp.i
+.PHONY : server/listener.i
+
+# target to preprocess a source file
+server/listener.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/listener.cpp.i
+.PHONY : server/listener.cpp.i
+
+server/listener.s: server/listener.cpp.s
+.PHONY : server/listener.s
+
+# target to generate assembly for a file
+server/listener.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/listener.cpp.s
+.PHONY : server/listener.cpp.s
+
+server/utility.o: server/utility.cpp.o
+.PHONY : server/utility.o
+
+# target to build an object file
+server/utility.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/utility.cpp.o
+.PHONY : server/utility.cpp.o
+
+server/utility.i: server/utility.cpp.i
+.PHONY : server/utility.i
+
+# target to preprocess a source file
+server/utility.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/utility.cpp.i
+.PHONY : server/utility.cpp.i
+
+server/utility.s: server/utility.cpp.s
+.PHONY : server/utility.s
+
+# target to generate assembly for a file
+server/utility.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/utility.cpp.s
+.PHONY : server/utility.cpp.s
+
+server/websocket_session.o: server/websocket_session.cpp.o
+.PHONY : server/websocket_session.o
+
+# target to build an object file
+server/websocket_session.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o
+.PHONY : server/websocket_session.cpp.o
+
+server/websocket_session.i: server/websocket_session.cpp.i
+.PHONY : server/websocket_session.i
+
+# target to preprocess a source file
+server/websocket_session.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.i
+.PHONY : server/websocket_session.cpp.i
+
+server/websocket_session.s: server/websocket_session.cpp.s
+.PHONY : server/websocket_session.s
+
+# target to generate assembly for a file
+server/websocket_session.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.s
+.PHONY : server/websocket_session.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -124,6 +234,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... server_lib"
+	@echo "... server/deserializer.o"
+	@echo "... server/deserializer.i"
+	@echo "... server/deserializer.s"
+	@echo "... server/listener.o"
+	@echo "... server/listener.i"
+	@echo "... server/listener.s"
+	@echo "... server/utility.o"
+	@echo "... server/utility.i"
+	@echo "... server/utility.s"
+	@echo "... server/websocket_session.o"
+	@echo "... server/websocket_session.i"
+	@echo "... server/websocket_session.s"
 .PHONY : help
 
 

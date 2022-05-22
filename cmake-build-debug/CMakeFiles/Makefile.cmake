@@ -12,7 +12,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.3/CMakeSystem.cmake"
   "../src/CMakeLists.txt"
-  "../src/server/CMakeLists.txt"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CMakeCInformation.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
@@ -23,16 +22,28 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CheckCSourceCompiles.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CheckIncludeFile.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/CheckLibraryExists.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Compiler/GNU-C.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Compiler/GNU.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/FindBoost.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/FindPackageMessage.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/FindThreads.cmake"
+  "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Internal/CheckSourceCompiles.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Platform/Linux.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/Platform/UnixPaths.cmake"
   "/snap/clion/190/bin/cmake/linux/share/cmake-3.22/Modules/ProcessorCount.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfigVersion.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0/boost_headers-config-version.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0/boost_headers-config.cmake"
   )
 
 # The corresponding makefile is:
@@ -45,11 +56,10 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "src/server/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Server.dir/DependInfo.cmake"
-  "src/server/CMakeFiles/server.dir/DependInfo.cmake"
+  "CMakeFiles/server.dir/DependInfo.cmake"
+  "src/CMakeFiles/server_lib.dir/DependInfo.cmake"
   )
