@@ -28,19 +28,20 @@ public:
 private:
 
     QGraphicsScene* mainScene;
-    Serializer* serializer;
+    QTimer* timer;
     QTcpSocket* socket;
+
+    Serializer* serializer;
     unsigned int CanvasId;
 
-
-
     void mousePressed(QMouseEvent *event);
-
+    void setTimer(QTimer* timer);
 
 public slots:
 
     void onReadyRead();
     void onReceivedMessage(QString responseStr);
+    void sendRegularRequest();
 
 signals:
 
