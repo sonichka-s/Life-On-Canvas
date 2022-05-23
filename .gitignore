@@ -5,3 +5,6 @@ draw
 main.cpp
 !*/CMakeLists.txt
 !*/*/CMakeLists.txt
+src
+include
+forms

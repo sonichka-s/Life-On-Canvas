@@ -4,18 +4,13 @@
 
 #include <QCoreApplication>
 #include <QDebug>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 #include <QTcpSocket>
-#include <QUrl>
 #include <QGraphicsScene>
 #include <QObject>
 #include <QMouseEvent>
 #include <QHostAddress>
 
 #include "serializer.h"
-#include "networkController.h"
-
 
 
 class CanvasController: public QObject{
@@ -23,7 +18,12 @@ class CanvasController: public QObject{
 public:
 
     explicit CanvasController(QGraphicsScene* mainScene);
+    CanvasController();
     ~CanvasController();
+
+    void initCanvas();
+    void sendDiff( std::vector<Point> diffArr);
+
 
 private:
 
@@ -32,10 +32,7 @@ private:
     QTcpSocket* socket;
     unsigned int CanvasId;
 
-    unsigned int initCanvas();
-    unsigned int getCanvasById(int canvasID);
 
-    void sendDiff();
 
     void mousePressed(QMouseEvent *event);
 
@@ -43,17 +40,13 @@ private:
 public slots:
 
     void onReadyRead();
-    void connected();
-    void disconnected();
-    void onReceivedMesage(nlohmann::json inJson);
-
+    void onReceivedMessage(QString responseStr);
 
 signals:
 
-    void receivedToRender(nlohmann::json inJson);
+    void receivedToRender(QString responseStr);
 
 };
-
 
 
 #endif //LIFE_ON_CANVAS_CANVASCONTROLLER_H

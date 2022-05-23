@@ -1,39 +1,62 @@
 
 #include "canvasController.h"
+
 #include <nlohmann/json.hpp>
 #include <QJsonObject>
 
 CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), mainScene( mainScene_){
 
     socket = new QTcpSocket(this);
+    serializer = new Serializer();
 
     connect(socket, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
-    connect(socket, SIGNAL(connected()), this, SLOT(connected()));
-    connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
-    connect(this, SIGNAL(receivedToRender(nlohmann::json)), this, SLOT(onReceivedMesage(nlohmann::json)));
+    connect(this, SIGNAL(receivedToRender(QString responseStr)), this, SLOT(onReceivedMesage(QString responseStr)));
 
+
+}
+
+CanvasController::CanvasController(): CanvasId ( 0 ){
+
+    socket = new QTcpSocket(this);
     serializer = new Serializer();
-}
 
-unsigned int CanvasController::initCanvas() {
-
-    socket->connectToHost(QHostAddress("127.0.0.1"), 8080);
-
+    connect(socket, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
+    connect(this, SIGNAL(receivedToRender(QString )), this, SLOT(onReceivedMessage(QString )));
 
 
 }
 
-unsigned int CanvasController::getCanvasById(int canvasID) {
+void CanvasController::initCanvas() {
 
+    socket->connectToHost("127.0.0.1", 4269);
 
+    if(socket->waitForConnected())
+    {
+
+        qDebug() << "Connected!";
+
+    }
+    else
+    {
+        qDebug() << "Not connected!";
+    }
 
 }
 
 
 
-void CanvasController::sendDiff() {
+void CanvasController::sendDiff( std::vector<Point> diffArr) {
 
 
+    nlohmann::json jsonToSend = serializer->serializeDiff(diffArr, CanvasId);
+
+    QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
+
+    socket->write(toSend.toUtf8());
+
+    if (!socket->waitForReadyRead()){
+        qDebug() << "connection is lost";
+    }
 
 }
 
@@ -41,35 +64,23 @@ void CanvasController::sendDiff() {
 void CanvasController::onReadyRead(){
 
 
-    const auto message = socket->readAll();
-    nlohmann::json inJson = message;
+    qDebug() << "Reading: " << socket->bytesAvailable();
 
-    emit receivedToRender(inJson);
+    QByteArray response = socket->readAll();
 
-}
+    QString responseStr = QString(response);
 
-void CanvasController::onReceivedMesage(nlohmann::json inJson) {
-    std::string type = inJson["Type"].get<std::string>();
-
-   if (type == "Put") {
-       serializer->parseCanvas(inJson.dump(), )
-   } else if ( type == "Init" ) {
-
-   }
+    emit receivedToRender(responseStr);
 
 }
 
-void CanvasController::connected() {
+void CanvasController:: onReceivedMessage(QString responseStr) {
 
 
 
+    qDebug() << responseStr;
 }
 
-void CanvasController::disconnected(){
-
-
-
-}
 void CanvasController::mousePressed(QMouseEvent *event){
 
 
