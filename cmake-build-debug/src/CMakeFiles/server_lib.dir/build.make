@@ -69,10 +69,24 @@ include src/CMakeFiles/server_lib.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/server_lib.dir/flags.make
 
+src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o: src/CMakeFiles/server_lib.dir/flags.make
+src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o: ../src/server/callbacks.cpp
+src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o: src/CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o"
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o -MF CMakeFiles/server_lib.dir/server/callbacks.cpp.o.d -o CMakeFiles/server_lib.dir/server/callbacks.cpp.o -c /home/sonichka/Documents/Life-On-Canvas/src/server/callbacks.cpp
+
+src/CMakeFiles/server_lib.dir/server/callbacks.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server/callbacks.cpp.i"
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sonichka/Documents/Life-On-Canvas/src/server/callbacks.cpp > CMakeFiles/server_lib.dir/server/callbacks.cpp.i
+
+src/CMakeFiles/server_lib.dir/server/callbacks.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server/callbacks.cpp.s"
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sonichka/Documents/Life-On-Canvas/src/server/callbacks.cpp -o CMakeFiles/server_lib.dir/server/callbacks.cpp.s
+
 src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o: src/CMakeFiles/server_lib.dir/flags.make
 src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o: ../src/server/deserializer.cpp
 src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o: src/CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o"
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o -MF CMakeFiles/server_lib.dir/server/deserializer.cpp.o.d -o CMakeFiles/server_lib.dir/server/deserializer.cpp.o -c /home/sonichka/Documents/Life-On-Canvas/src/server/deserializer.cpp
 
 src/CMakeFiles/server_lib.dir/server/deserializer.cpp.i: cmake_force
@@ -86,7 +100,7 @@ src/CMakeFiles/server_lib.dir/server/deserializer.cpp.s: cmake_force
 src/CMakeFiles/server_lib.dir/server/listener.cpp.o: src/CMakeFiles/server_lib.dir/flags.make
 src/CMakeFiles/server_lib.dir/server/listener.cpp.o: ../src/server/listener.cpp
 src/CMakeFiles/server_lib.dir/server/listener.cpp.o: src/CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/server_lib.dir/server/listener.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/server_lib.dir/server/listener.cpp.o"
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/server_lib.dir/server/listener.cpp.o -MF CMakeFiles/server_lib.dir/server/listener.cpp.o.d -o CMakeFiles/server_lib.dir/server/listener.cpp.o -c /home/sonichka/Documents/Life-On-Canvas/src/server/listener.cpp
 
 src/CMakeFiles/server_lib.dir/server/listener.cpp.i: cmake_force
@@ -100,7 +114,7 @@ src/CMakeFiles/server_lib.dir/server/listener.cpp.s: cmake_force
 src/CMakeFiles/server_lib.dir/server/utility.cpp.o: src/CMakeFiles/server_lib.dir/flags.make
 src/CMakeFiles/server_lib.dir/server/utility.cpp.o: ../src/server/utility.cpp
 src/CMakeFiles/server_lib.dir/server/utility.cpp.o: src/CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/server_lib.dir/server/utility.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/server_lib.dir/server/utility.cpp.o"
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/server_lib.dir/server/utility.cpp.o -MF CMakeFiles/server_lib.dir/server/utility.cpp.o.d -o CMakeFiles/server_lib.dir/server/utility.cpp.o -c /home/sonichka/Documents/Life-On-Canvas/src/server/utility.cpp
 
 src/CMakeFiles/server_lib.dir/server/utility.cpp.i: cmake_force
@@ -114,7 +128,7 @@ src/CMakeFiles/server_lib.dir/server/utility.cpp.s: cmake_force
 src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o: src/CMakeFiles/server_lib.dir/flags.make
 src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o: ../src/server/websocket_session.cpp
 src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o: src/CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o"
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o -MF CMakeFiles/server_lib.dir/server/websocket_session.cpp.o.d -o CMakeFiles/server_lib.dir/server/websocket_session.cpp.o -c /home/sonichka/Documents/Life-On-Canvas/src/server/websocket_session.cpp
 
 src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.i: cmake_force
@@ -127,6 +141,7 @@ src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.s: cmake_force
 
 # Object files for target server_lib
 server_lib_OBJECTS = \
+"CMakeFiles/server_lib.dir/server/callbacks.cpp.o" \
 "CMakeFiles/server_lib.dir/server/deserializer.cpp.o" \
 "CMakeFiles/server_lib.dir/server/listener.cpp.o" \
 "CMakeFiles/server_lib.dir/server/utility.cpp.o" \
@@ -135,13 +150,14 @@ server_lib_OBJECTS = \
 # External object files for target server_lib
 server_lib_EXTERNAL_OBJECTS =
 
+src/libserver_lib.a: src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o
 src/libserver_lib.a: src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o
 src/libserver_lib.a: src/CMakeFiles/server_lib.dir/server/listener.cpp.o
 src/libserver_lib.a: src/CMakeFiles/server_lib.dir/server/utility.cpp.o
 src/libserver_lib.a: src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o
 src/libserver_lib.a: src/CMakeFiles/server_lib.dir/build.make
 src/libserver_lib.a: src/CMakeFiles/server_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libserver_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libserver_lib.a"
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && $(CMAKE_COMMAND) -P CMakeFiles/server_lib.dir/cmake_clean_target.cmake
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server_lib.dir/link.txt --verbose=$(VERBOSE)
 

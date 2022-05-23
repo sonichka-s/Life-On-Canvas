@@ -130,6 +130,30 @@ server_lib/fast:
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/build
 .PHONY : server_lib/fast
 
+server/callbacks.o: server/callbacks.cpp.o
+.PHONY : server/callbacks.o
+
+# target to build an object file
+server/callbacks.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o
+.PHONY : server/callbacks.cpp.o
+
+server/callbacks.i: server/callbacks.cpp.i
+.PHONY : server/callbacks.i
+
+# target to preprocess a source file
+server/callbacks.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/callbacks.cpp.i
+.PHONY : server/callbacks.cpp.i
+
+server/callbacks.s: server/callbacks.cpp.s
+.PHONY : server/callbacks.s
+
+# target to generate assembly for a file
+server/callbacks.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/callbacks.cpp.s
+.PHONY : server/callbacks.cpp.s
+
 server/deserializer.o: server/deserializer.cpp.o
 .PHONY : server/deserializer.o
 
@@ -235,6 +259,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server_lib"
+	@echo "... server/callbacks.o"
+	@echo "... server/callbacks.i"
+	@echo "... server/callbacks.s"
 	@echo "... server/deserializer.o"
 	@echo "... server/deserializer.i"
 	@echo "... server/deserializer.s"

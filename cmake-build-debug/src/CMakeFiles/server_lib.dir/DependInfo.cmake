@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/sonichka/Documents/Life-On-Canvas/src/server/callbacks.cpp" "src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/deserializer.cpp" "src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/listener.cpp" "src/CMakeFiles/server_lib.dir/server/listener.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/listener.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/utility.cpp" "src/CMakeFiles/server_lib.dir/server/utility.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/utility.cpp.o.d"

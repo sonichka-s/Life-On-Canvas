@@ -133,6 +133,9 @@
 		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/main/main.cpp">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/callbacks.cpp">
+			<Option target="server_lib"/>
+		</Unit>
 		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/deserializer.cpp">
 			<Option target="server_lib"/>
 		</Unit>

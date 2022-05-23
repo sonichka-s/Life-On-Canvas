@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/server_lib.dir/server/callbacks.cpp.o"
+  "CMakeFiles/server_lib.dir/server/callbacks.cpp.o.d"
   "CMakeFiles/server_lib.dir/server/deserializer.cpp.o"
   "CMakeFiles/server_lib.dir/server/deserializer.cpp.o.d"
   "CMakeFiles/server_lib.dir/server/listener.cpp.o"
