@@ -2,21 +2,23 @@
 #include <iostream>
 #include "serializer.h"
 
-void Serializer::parseCanvas(const std::string& inJson_str, std::vector<Point>& canvasArr) {
 
-    nlohmann::json j = nlohmann::json::parse(inJson_str);
-
-    j["Points"].get_to<std::vector<Point>>(canvasArr);
-};
-
-nlohmann::json Serializer::serializeDiff(const std::vector<Point>& points, unsigned int canvasId) {
+nlohmann::json Serializer::serializeDiff(const std::vector<LineItem>& lineItems, unsigned int canvasId) {
 
     nlohmann::json j;
     j["Type"] = "Put";
-    j["Points"] = points;
+    j["LineItems"] = lineItems;
     j["canvasId"] = canvasId;
     return j;
 }
+
+
+void Serializer::parseCanvas(const std::string& inJson_str, std::vector<LineItem>& itemsToDisplay) {
+
+    nlohmann::json j = nlohmann::json::parse(inJson_str);
+
+    j["LineItems"].get_to<std::vector<LineItem>>(itemsToDisplay);
+};
 
 
 

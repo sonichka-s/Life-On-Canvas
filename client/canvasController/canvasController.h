@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QMouseEvent>
 #include <QHostAddress>
+#include <QGraphicsItemGroup>
 
 #include "serializer.h"
 
@@ -22,7 +23,7 @@ public:
     ~CanvasController();
 
     void initCanvas();
-    void sendDiff( std::vector<Point> diffArr);
+
 
 
 private:
@@ -34,14 +35,25 @@ private:
     Serializer* serializer;
     unsigned int CanvasId;
 
-    void mousePressed(QMouseEvent *event);
+    QVector<QGraphicsLineItem*> currentFreeLineItems;
+
+
+    void sendDiff( std::vector<LineItem> diffArr);
+
     void setTimer(QTimer* timer);
+
+    std::vector<LineItem> convertQLineItems(const QVector<QGraphicsLineItem*>& lineItems);
 
 public slots:
 
     void onReadyRead();
     void onReceivedMessage(QString responseStr);
     void sendRegularRequest();
+
+    void onMousePressed();
+    void onMouseMoved(QGraphicsLineItem *lineItem);
+    void onMouseReleased();
+
 
 signals:
 
