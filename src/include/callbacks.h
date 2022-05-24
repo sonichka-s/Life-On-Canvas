@@ -18,7 +18,7 @@ namespace beast = boost::beast;
 
 struct cb_error {
     std::string msg = "";
-    beast::error_code  ec;
+    beast::error_code ec;
 };
 
 struct ws_callbacks {
@@ -52,6 +52,14 @@ struct ws_callbacks {
     }
 };
 
+struct server_manager {
+    std::string ip = "127.0.0.1";
+    int port = 8080;
+    int threads = 1;
+    ws_callbacks cb;
+    std::vector<void*>* sessions;
+};
+
 struct trigger {
     std::string pid;
     std::string cmd;
@@ -64,7 +72,7 @@ class triggers {
 public:
     std::vector<trigger*> elems;
 
-    trigger* add(
+    trigger* add (
             std::string cmd,
     std::function<void(const json, std::function<void(const json)>)> do_handle,
     std::function<void(const json)> on_response,

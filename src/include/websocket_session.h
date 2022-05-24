@@ -9,8 +9,10 @@
 #include <boost/beast/websocket.hpp>
 #include <boost/asio/dispatch.hpp>
 #include <boost/asio/strand.hpp>
+#include <callbacks.h>
 
 namespace beast = boost::beast;
+namespace http = beast::http;
 namespace asio = boost::asio;
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
@@ -18,20 +20,21 @@ using tcp = boost::asio::ip::tcp;
 
 class websocket_session : public std::enable_shared_from_this<websocket_session> {
 public:
+    server_manager* manager;
+    std::vector<std::string>* response_queue;
+    uint64_t sessionID;
+
     explicit
-    websocket_session(tcp::socket&& socket)
-    : ws_(std::move(socket))
-    {
-    }
+    websocket_session(tcp::socket&& socket) : ws_(std::move(socket)) {}
 
     void run() {
-        asio::dispatch(ws_.get_executor(),
-                       beast::bind_front_handler(
-                               &websocket_session::on_run(),
-                               shared_from_this()));
-    }
 
-    void on_run() {
+        ws_.set_option(websocket::stream_base::timeout::suggested(beast::role_type::server));
+        ws_.set_option(websocket::stream_base::decorator([](websocket::response_type& res){
+            res.set(http::field::server,
+                    std::string(BOOST_BEAST_VERSION_STRING) + "websocket-server-async");
+        }));
+
         ws_.async_accept(
                 beast::bind_front_handler(
                         &websocket_session::on_accept,
@@ -40,6 +43,10 @@ public:
 
     void on_accept(beast::error_code ec)
     {
+        sessionID = (uint64_t)std::time(nullptr);
+        manager->sessions->push_back(this);
+        manager->cb.trigger_on_open(this);
+
         // Read a message
         do_read();
     }
@@ -51,8 +58,35 @@ public:
                                shared_from_this()));
     }
 
-    void on_read(std::size_t bytes_transferred) {
-        handle_request();
+    void on_read(beast::error_code ec, std::size_t bytes_transferred) {
+        manager->cb.err.ec = ec;
+
+        if (ec == websocket::error::closed) {
+            manager->cb.trigger_on_close();
+
+            for (int i = 0; i < manager->sessions->size(); ++i) {
+                std::vector<void*> sessions = *manager->sessions;
+                websocket_session* con_ = ((websocket_session*)sessions[i]);
+                if(con_->sessionID == this->sessionID) {
+                    manager->sessions->erase(manager->sessions->begin() + i);
+                    break;
+                }
+            }
+        }
+
+        auto msg = new std::string(beast::buffers_to_string(buffer_.data()));
+        if (msg->length() > 0)
+            manager->cb.on_message(msg, this);
+
+        buffer_.consume(buffer_.size());
+
+        if (!response_queue->empty()) {
+            std::vector<std::string> q = *response_queue;
+            ws_.async_write(asio::buffer(*msg),
+                            beast::bind_front_handler(
+                                    &websocket_session::on_write, shared_from_this()
+                                    ));
+        }
     }
 
     void handle_request() {
@@ -70,8 +104,11 @@ public:
     }
 
     void on_write(beast::error_code ec, std::size_t bytes_transferred) {
-        buffer_.consume(buffer_.size());
-        do_read();
+        if (response_queue->size() > 0) {
+            response_queue->erase(response_queue->begin());
+            std::vector<std::string> q = *response_queue;
+            if (response_queue->size() > 0) {}
+        }
     }
 
 private:
