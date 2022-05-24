@@ -14,7 +14,10 @@
 #include <mutex>
 #include <functional>
 
+#include <nlohmann/json.hpp>
+
 namespace beast = boost::beast;
+using json = nlohmann::json;
 
 struct cb_error {
     std::string msg = "";
@@ -72,7 +75,7 @@ class triggers {
 public:
     std::vector<trigger*> elems;
 
-    trigger* add (
+    trigger* add(
             std::string cmd,
     std::function<void(const json, std::function<void(const json)>)> do_handle,
     std::function<void(const json)> on_response,
@@ -96,6 +99,13 @@ public:
         elems.push_back(trigger);
 
         return trigger;
+    }
+
+    trigger* request_type(std::string req) {
+        for (int i = 0; i < elems.size(); ++i) {
+            if (req == elems[i]->cmd)
+             return elems[i];
+        }
     }
 };
 

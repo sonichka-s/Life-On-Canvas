@@ -202,6 +202,30 @@ server/listener.cpp.s:
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/listener.cpp.s
 .PHONY : server/listener.cpp.s
 
+server/thread_controller.o: server/thread_controller.cpp.o
+.PHONY : server/thread_controller.o
+
+# target to build an object file
+server/thread_controller.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/thread_controller.cpp.o
+.PHONY : server/thread_controller.cpp.o
+
+server/thread_controller.i: server/thread_controller.cpp.i
+.PHONY : server/thread_controller.i
+
+# target to preprocess a source file
+server/thread_controller.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/thread_controller.cpp.i
+.PHONY : server/thread_controller.cpp.i
+
+server/thread_controller.s: server/thread_controller.cpp.s
+.PHONY : server/thread_controller.s
+
+# target to generate assembly for a file
+server/thread_controller.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/thread_controller.cpp.s
+.PHONY : server/thread_controller.cpp.s
+
 server/utility.o: server/utility.cpp.o
 .PHONY : server/utility.o
 
@@ -268,6 +292,9 @@ help:
 	@echo "... server/listener.o"
 	@echo "... server/listener.i"
 	@echo "... server/listener.s"
+	@echo "... server/thread_controller.o"
+	@echo "... server/thread_controller.i"
+	@echo "... server/thread_controller.s"
 	@echo "... server/utility.o"
 	@echo "... server/utility.i"
 	@echo "... server/utility.s"

@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/server_lib.dir/server/deserializer.cpp.o.d"
   "CMakeFiles/server_lib.dir/server/listener.cpp.o"
   "CMakeFiles/server_lib.dir/server/listener.cpp.o.d"
+  "CMakeFiles/server_lib.dir/server/thread_controller.cpp.o"
+  "CMakeFiles/server_lib.dir/server/thread_controller.cpp.o.d"
   "CMakeFiles/server_lib.dir/server/utility.cpp.o"
   "CMakeFiles/server_lib.dir/server/utility.cpp.o.d"
   "CMakeFiles/server_lib.dir/server/websocket_session.cpp.o"

@@ -75,6 +75,9 @@
 		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/listener.cpp">
 			<Option target="server_lib"/>
 		</Unit>
+		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/thread_controller.cpp">
+			<Option target="server_lib"/>
+		</Unit>
 		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/utility.cpp">
 			<Option target="server_lib"/>
 		</Unit>

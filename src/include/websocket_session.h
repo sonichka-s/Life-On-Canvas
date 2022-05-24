@@ -23,6 +23,8 @@ public:
     server_manager* manager;
     std::vector<std::string>* response_queue;
     uint64_t sessionID;
+    bool reading = false;
+    bool writing = false;
 
     explicit
     websocket_session(tcp::socket&& socket) : ws_(std::move(socket)) {}
@@ -48,14 +50,23 @@ public:
         manager->cb.trigger_on_open(this);
 
         // Read a message
-        do_read();
+        this->do_read();
     }
 
     void do_read() {
-        ws_.async_read(buffer_,
-                       beast::bind_front_handler(
-                               &websocket_session::on_read,
-                               shared_from_this()));
+        if(response_queue->size() > 0 && !writing) {
+            std::vector<std::string> q = *response_queue;
+            this->do_write(q[0]);
+        }
+
+        if (!reading) {
+            reading == true;
+
+            ws_.async_read(buffer_,
+                           beast::bind_front_handler(
+                                   &websocket_session::on_read,
+                                   shared_from_this()));
+        }
     }
 
     void on_read(beast::error_code ec, std::size_t bytes_transferred) {
@@ -79,35 +90,39 @@ public:
             manager->cb.on_message(msg, this);
 
         buffer_.consume(buffer_.size());
-
-        if (!response_queue->empty()) {
-            std::vector<std::string> q = *response_queue;
-            ws_.async_write(asio::buffer(*msg),
-                            beast::bind_front_handler(
-                                    &websocket_session::on_write, shared_from_this()
-                                    ));
-        }
+        reading = false;
+        this->do_read();
     }
 
-    void handle_request() {
-        auto res = std::make_shared<std::string>();
-        auto req = beast::buffers_to_string(buffer_.data());
-        //обработка запроса
-    }
+//    void handle_request() {
+//        auto res = std::make_shared<std::string>();
+//        auto req = beast::buffers_to_string(buffer_.data());
+//        //обработка запроса
+//    }
 
-    void write(std::shared_ptr<std::string>& res) {
-        ws_.text(ws_.got_text());
-        ws_.async_write(asio::buffer(*res), [s = shared_from_this(), res](beast::error_code ec, size_t bytes_transferred)
-        mutable {
-            s->on_write(ec, res->size());
-        });
+    void do_write(std::string msg) {
+        if (writing == true)
+            return;
+
+        writing = true;
+
+        this->ws_.async_write(asio::buffer(msg),
+                              beast::bind_front_handler(
+                                      &websocket_session::on_write,
+                                      shared_from_this()
+                                      ));
     }
 
     void on_write(beast::error_code ec, std::size_t bytes_transferred) {
         if (response_queue->size() > 0) {
             response_queue->erase(response_queue->begin());
             std::vector<std::string> q = *response_queue;
-            if (response_queue->size() > 0) {}
+            if (response_queue->size() > 0)
+                this->do_write(q[0]);
+        }
+
+        else {
+            writing = false;
         }
     }
 
