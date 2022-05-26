@@ -13,69 +13,58 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
 
     serializer = new Serializer();
 
+    //connect network signals
+    connect(socket, SIGNAL(readyRead()),
+            this, SLOT(onReadyRead()));
 
-    connect(socket, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
-    connect(this, SIGNAL(receivedToRender(QString )), this, SLOT(onReceivedMessage(QString )));
-    connect(timer, SIGNAL(timeout()), this, SLOT(sendRegularRequest()));
+    connect(this, SIGNAL(responseReceived(QString)),
+            this, SLOT(onResponseReceived(QString)));
 
-    connect(mainScene, SIGNAL(mousePressedSignal()), this, SLOT(onMousePressed()));
-    connect(mainScene, SIGNAL(mouseMovedSignal(QGraphicsLineItem* )), this, SLOT(onMouseMoved(QGraphicsLineItem*)));
-    connect(mainScene, SIGNAL(mouseReleasedSignal()), this, SLOT(onMouseReleased()));
+    connect(timer, SIGNAL(timeout()),
+            this, SLOT(sendRegularRequest()));
 
-
-
+    //connect scene signals
+    connect(mainScene, SIGNAL(mousePressedFreeCurve()),
+            this, SLOT(onMousePressedFreeCurve()));
+    connect(mainScene, SIGNAL(mouseMovedFreeCurve(QGraphicsLineItem* )),
+            this, SLOT(
+            onMouseMovedFreeCurve(QGraphicsLineItem * )));
+    connect(mainScene, SIGNAL(mouseReleasedFreeCurve()),
+            this, SLOT(onMouseReleasedFreeCurve()));
 }
-
 
 void CanvasController::initCanvas() {
 
     socket->connectToHost("127.0.0.1", 4269);
 
-
-    if(socket->waitForConnected())
-    {
+    if(socket->waitForConnected()){
 
         this->setTimer(timer);
 
         qDebug() << "Connected!";
+    } else {
 
-    }
-    else
-    {
         qDebug() << "Not connected!";
     }
 
 }
 
+void CanvasController::setTimer(QTimer* timer) {
 
+    timer->start(100);
+}
 
-void CanvasController::sendDiff( std::vector<LineItem> diffArr) {
-
+void CanvasController::sendDiff( std::vector<GraphicsItem> diffArr) {
 
     nlohmann::json jsonToSend = serializer->serializeDiff(diffArr, CanvasId);
-
     QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
 
     socket->write(toSend.toUtf8());
 
     if (!socket->waitForReadyRead()){
+
         qDebug() << "connection is lost";
     }
-
-}
-
-
-void CanvasController::onReadyRead(){
-
-
-    qDebug() << "Reading: " << socket->bytesAvailable();
-
-    QByteArray response = socket->readAll();
-
-    QString responseStr = QString(response);
-
-    emit receivedToRender(responseStr);
-
 }
 
 void CanvasController::sendRegularRequest() {
@@ -91,35 +80,61 @@ void CanvasController::sendRegularRequest() {
     if (!socket->waitForReadyRead()){
         qDebug() << "connection is lost";
     }
-
 }
 
-void CanvasController:: onReceivedMessage(QString responseStr) {
+void CanvasController::onReadyRead(){
+
+    qDebug() << "Reading: " << socket->bytesAvailable();
+
+    QByteArray response = socket->readAll();
+    QString responseStr = QString(response);
+
+    emit responseReceived(responseStr);
+}
+
+void CanvasController:: onResponseReceived(QString responseStr) {
 
     qDebug() << responseStr;
-
 }
 
-void CanvasController::onMousePressed(){
+void CanvasController::onMousePressedFreeCurve(){
+
     currentFreeLineItems.clear();
 }
 
-void CanvasController::onMouseMoved(QGraphicsLineItem *lineItem){
+void CanvasController::onMouseMovedFreeCurve(QGraphicsLineItem *lineItem){
+
     currentFreeLineItems.push_back(lineItem);
+}
+
+void CanvasController::onMouseReleasedFreeCurve(){
+
+    std::vector<GraphicsItem> diff = convertQLineItems(currentFreeLineItems);
+    this->sendDiff(diff);
+}
+
+
+void CanvasController::onMouseReleasedSingleLine(QGraphicsLineItem* lineItem){
 
 }
 
-void CanvasController::onMouseReleased(){
 
-    std::vector<LineItem> diffToSend = convertQLineItems(currentFreeLineItems);
-    this->sendDiff(diffToSend);
+void CanvasController::onMouseReleasedEllipse(QGraphicsEllipseItem* ellipseItem){
+
 }
 
 
-std::vector<LineItem> CanvasController::convertQLineItems(const QVector<QGraphicsLineItem *> &lineItems) {
-    std::vector<LineItem> diffArray;
+void CanvasController::onMouseReleasedRectangle(QGraphicsRectItem* rectItem){
+
+}
+
+std::vector<GraphicsItem> CanvasController::convertQLineItems(const QVector<QGraphicsLineItem *> &lineItems) {
+
+    std::vector<GraphicsItem> diffArray;
+
     for ( int i = 0; i < lineItems.size(); ++i) {
-        LineItem itemToConvert;
+
+        GraphicsItem itemToConvert;
         itemToConvert.x1 = static_cast<float>(lineItems[i]->line().x1());
         itemToConvert.y1 = static_cast<float>(lineItems[i]->line().y1());
         itemToConvert.x2 = static_cast<float>(lineItems[i]->line().x2());
@@ -129,16 +144,14 @@ std::vector<LineItem> CanvasController::convertQLineItems(const QVector<QGraphic
         itemToConvert.color.g = lineItems[i]->pen().color().green();
         itemToConvert.color.b = lineItems[i]->pen().color().blue();
         itemToConvert.color.a = lineItems[i]->pen().color().alpha();
+        itemToConvert.type = "Line";
         diffArray.push_back(itemToConvert);
     }
     return diffArray;
 }
 
-void CanvasController::setTimer(QTimer* timer) {
-   timer->start(100);
-}
-
 CanvasController::~CanvasController(){
+
     delete socket;
     delete serializer;
     delete timer;

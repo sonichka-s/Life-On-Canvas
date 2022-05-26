@@ -3,7 +3,7 @@
 #include "serializer.h"
 
 
-nlohmann::json Serializer::serializeDiff(const std::vector<LineItem>& lineItems, unsigned int canvasId) {
+nlohmann::json Serializer::serializeDiff(const std::vector<GraphicsItem>& lineItems, unsigned int canvasId) {
 
     nlohmann::json j;
     j["Type"] = "Put";
@@ -13,11 +13,11 @@ nlohmann::json Serializer::serializeDiff(const std::vector<LineItem>& lineItems,
 }
 
 
-void Serializer::parseCanvas(const std::string& inJson_str, std::vector<LineItem>& itemsToDisplay) {
+void Serializer::parseCanvas(const std::string& inJson_str, std::vector<GraphicsItem>& itemsToDisplay) {
 
     nlohmann::json j = nlohmann::json::parse(inJson_str);
 
-    j["LineItems"].get_to<std::vector<LineItem>>(itemsToDisplay);
+    j["LineItems"].get_to<std::vector<GraphicsItem>>(itemsToDisplay);
 };
 
 

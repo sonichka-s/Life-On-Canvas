@@ -17,14 +17,10 @@
 class CanvasController: public QObject{
     Q_OBJECT
 public:
-
     explicit CanvasController(QGraphicsScene* mainScene);
-    CanvasController();
     ~CanvasController();
 
     void initCanvas();
-
-
 
 private:
 
@@ -38,27 +34,36 @@ private:
     QVector<QGraphicsLineItem*> currentFreeLineItems;
 
 
-    void sendDiff( std::vector<LineItem> diffArr);
-
     void setTimer(QTimer* timer);
 
-    std::vector<LineItem> convertQLineItems(const QVector<QGraphicsLineItem*>& lineItems);
+    void sendDiff( std::vector<GraphicsItem> diffArr);
+
+    std::vector<GraphicsItem> convertQLineItems(const QVector<QGraphicsLineItem*>& lineItems);
 
 public slots:
 
-    void onReadyRead();
-    void onReceivedMessage(QString responseStr);
+    //network processing slots
     void sendRegularRequest();
+    void onReadyRead();
+    void onResponseReceived(QString responseStr);
 
-    void onMousePressed();
-    void onMouseMoved(QGraphicsLineItem *lineItem);
-    void onMouseReleased();
+    //free curve draw tracking slots
+    void onMousePressedFreeCurve();
+    void onMouseMovedFreeCurve(QGraphicsLineItem *lineItem);
+    void onMouseReleasedFreeCurve();
 
+    //single line item draw tracking slot
+    void onMouseReleasedSingleLine(QGraphicsLineItem* lineItem);
+
+    //ellipse item draw tracking slot
+    void onMouseReleasedEllipse(QGraphicsEllipseItem* ellipseItem);
+
+    // rectangle item draw tracking slot
+    void onMouseReleasedRectangle(QGraphicsRectItem* rectItem);
 
 signals:
 
-    void receivedToRender(QString responseStr);
-
+    void responseReceived(QString responseStr);
 };
 
 

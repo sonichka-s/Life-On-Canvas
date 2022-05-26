@@ -5,6 +5,7 @@ draw
 main.cpp
 !*/CMakeLists.txt
 !*/*/CMakeLists.txt
+!client/graphicsItem/CMakeLists.txt
 src
 include
 forms

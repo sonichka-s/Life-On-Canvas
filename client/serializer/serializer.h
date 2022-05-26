@@ -6,16 +6,16 @@
 #include <nlohmann/json.hpp>
 
 
-#include "lineItem.h"
+#include "graphicsItem.h"
 //#include "canvasController.h"
 
 
 class Serializer {
 public:
 
-    nlohmann::json serializeDiff(const std::vector<LineItem>& lineItems, unsigned int canvasId);
+    nlohmann::json serializeDiff(const std::vector<GraphicsItem>& lineItems, unsigned int canvasId);
 
-    void parseCanvas(const std::string& inJson_str, std::vector<LineItem>& itemsToDisplay);
+    void parseCanvas(const std::string& inJson_str, std::vector<GraphicsItem>& itemsToDisplay);
 
     int parseId(std::string inJson_str);
 
