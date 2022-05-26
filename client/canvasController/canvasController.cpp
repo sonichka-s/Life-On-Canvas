@@ -1,3 +1,4 @@
+#include <iostream>
 
 #include "canvasController.h"
 
@@ -11,7 +12,6 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
     socket = new QTcpSocket(this);
     timer = new QTimer(this);
 
-    serializer = new Serializer();
 
     //connect network signals
     connect(socket, SIGNAL(readyRead()),
@@ -61,10 +61,11 @@ void CanvasController::setTimer(QTimer* timer) {
     timer->start(100);
 }
 
-void CanvasController::sendDiff( std::vector<GraphicsItem> diffArr) {
+void CanvasController::sendDiff(const std::vector<GraphicsItem> &diffArr) {
 
-    nlohmann::json jsonToSend = serializer->serializeDiff(diffArr, CanvasId);
-    QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
+    std::string stringToSend = Serializer::serializeDiff(diffArr, CanvasId);
+    QString toSend = QString::fromUtf8(stringToSend.c_str());
+
 
     socket->write(toSend.toUtf8());
 
@@ -78,7 +79,7 @@ void CanvasController::sendRegularRequest() {
 
     nlohmann::json jsonToSend;
     jsonToSend["Type"] = "Get";
-    jsonToSend["canvasId"] = CanvasId;
+    jsonToSend["CanvasId"] = CanvasId;
 
     QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
 
@@ -99,9 +100,18 @@ void CanvasController::onReadyRead(){
     emit responseReceived(responseStr);
 }
 
-void CanvasController:: onResponseReceived(QString responseStr) {
+void CanvasController:: onResponseReceived(const QString &responseStr) {
 
-    qDebug() << responseStr;
+    std::string responseToParse = responseStr.toStdString();
+
+    CanvasId = Serializer::parseId(responseToParse);
+
+    std::vector<GraphicsItem> itemsToDisplay;
+    Serializer::parseDiff(responseToParse, itemsToDisplay);
+
+    displayItems(itemsToDisplay);
+
+
 }
 
 void CanvasController::onMousePressedFreeCurve(){
@@ -115,34 +125,85 @@ void CanvasController::onMouseMovedFreeCurve(QGraphicsLineItem *lineItem){
 }
 
 void CanvasController::onMouseReleasedFreeCurve(){
-
     std::vector<GraphicsItem> diff = convertQLineItems(currentFreeLineItems);
-    this->sendDiff(diff);
+    sendDiff(diff);
 }
 
 
 void CanvasController::onMouseReleasedSingleLine(QGraphicsLineItem* lineItem){
-
     GraphicsItem itemToSend(lineItem);
+    std::vector<GraphicsItem> diff {itemToSend};
+    sendDiff(diff);
 }
 
 
 void CanvasController::onMouseReleasedEllipse(QGraphicsEllipseItem* ellipseItem){
-
     GraphicsItem itemToSend(ellipseItem);
+    std::vector<GraphicsItem> diff {itemToSend};
+    sendDiff(diff);
 }
 
 
 void CanvasController::onMouseReleasedRectangle(QGraphicsRectItem* rectItem){
     GraphicsItem itemToSend(rectItem);
+    std::vector<GraphicsItem> diff {itemToSend};
+    sendDiff(diff);
+}
 
+void CanvasController::displayItems(const std::vector<GraphicsItem> &itemsToDisplay) {
+    for (auto graphicsItem: itemsToDisplay){
+        if (graphicsItem.itemType == 'L'){
+            QGraphicsLineItem *lineItem = new QGraphicsLineItem();
+            lineItem->setLine(graphicsItem.x1, graphicsItem.y1,
+                              graphicsItem.x2, graphicsItem.y2);
+            QPen pen;
+            pen.color().setRed(graphicsItem.color.r);
+            pen.color().setGreen(graphicsItem.color.g);
+            pen.color().setBlue(graphicsItem.color.b);
+            pen.color().setAlpha(graphicsItem.color.a);
+            pen.setWidth(graphicsItem.width);
+            lineItem->setPen(pen);
+
+           // mainScene->addItemToVector(lineItem);
+            mainScene->addItem(lineItem);
+        } else if (graphicsItem.itemType == 'E'){
+            QGraphicsEllipseItem* ellipseItem = new QGraphicsEllipseItem();
+            ellipseItem->setRect(graphicsItem.x1, graphicsItem.y1,
+                                 graphicsItem.x2, graphicsItem.y2);
+
+            QPen pen;
+            pen.color().setRed(graphicsItem.color.r);
+            pen.color().setGreen(graphicsItem.color.g);
+            pen.color().setBlue(graphicsItem.color.b);
+            pen.color().setAlpha(graphicsItem.color.a);
+            pen.setWidth(graphicsItem.width);
+            ellipseItem->setPen(pen);
+
+            // mainScene->addItemToVector(lineItem);
+            mainScene->addItem(ellipseItem);
+        } else if (graphicsItem.itemType == 'R'){
+            QGraphicsRectItem* rectItem = new QGraphicsRectItem();
+            rectItem->setRect(graphicsItem.x1, graphicsItem.y1,
+                              graphicsItem.x2, graphicsItem.y2);
+            QPen pen;
+            pen.color().setRed(graphicsItem.color.r);
+            pen.color().setGreen(graphicsItem.color.g);
+            pen.color().setBlue(graphicsItem.color.b);
+            pen.color().setAlpha(graphicsItem.color.a);
+            pen.setWidth(graphicsItem.width);
+            rectItem->setPen(pen);
+
+            // mainScene->addItemToVector(lineItem);
+            mainScene->addItem(rectItem);
+        }
+    }
 }
 
 std::vector<GraphicsItem> CanvasController::convertQLineItems(const QVector<QGraphicsLineItem *> &lineItems) {
 
     std::vector<GraphicsItem> diffArray;
-    for ( int i = 0; i < lineItems.size(); ++i) {
-        GraphicsItem itemToConvert(lineItems[i]);
+    for (auto lineItem : lineItems) {
+        GraphicsItem itemToConvert(lineItem);
         diffArray.push_back(itemToConvert);
     }
     return diffArray;
@@ -151,6 +212,5 @@ std::vector<GraphicsItem> CanvasController::convertQLineItems(const QVector<QGra
 CanvasController::~CanvasController(){
 
     delete socket;
-    delete serializer;
     delete timer;
 }

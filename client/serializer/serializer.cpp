@@ -3,30 +3,29 @@
 #include "serializer.h"
 
 
-nlohmann::json Serializer::serializeDiff(const std::vector<GraphicsItem>& lineItems, unsigned int canvasId) {
+std::string Serializer::serializeDiff(const std::vector<GraphicsItem>& graphicsItems, unsigned int canvasId) {
 
     nlohmann::json j;
     j["Type"] = "Put";
-    j["LineItems"] = lineItems;
-    j["canvasId"] = canvasId;
-    return j;
+    j["GraphicsItems"] = graphicsItems;
+    j["CanvasId"] = canvasId;
+    return j.dump();
 }
 
 
-void Serializer::parseCanvas(const std::string& inJson_str, std::vector<GraphicsItem>& itemsToDisplay) {
+void Serializer::parseDiff(const std::string& inJson_str, std::vector<GraphicsItem>& itemsToDisplay) {
 
-    nlohmann::json j = nlohmann::json::parse(inJson_str);
-    std::vector<GraphicsItem> a;
+    nlohmann::json j = nlohmann::json::parse(inJson_str.c_str());
 
-    j["LineItems"].get_to<std::vector<GraphicsItem>>(itemsToDisplay);
+    j["GraphicsItems"].get_to<std::vector<GraphicsItem>>(itemsToDisplay);
 };
 
 
 
-int Serializer::parseId(std::string inJson_str) {
+int Serializer::parseId(const std::string &inJson_str) {
 
-    nlohmann::json j = nlohmann::json::parse(inJson_str);
+    nlohmann::json j = nlohmann::json::parse(inJson_str.c_str());
     int canvasId;
-    j.at("canvasId").get_to(canvasId);
+    j["CanvasId"].get_to(canvasId);
     return canvasId;
 }

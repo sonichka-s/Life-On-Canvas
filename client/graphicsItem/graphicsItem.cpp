@@ -11,8 +11,9 @@ GraphicsItem::GraphicsItem(QGraphicsLineItem* lineItem){
     color.g = lineItem->pen().color().green();
     color.b = lineItem->pen().color().blue();
     color.a = lineItem->pen().color().alpha();
-    itemType = 1;
+    itemType = 'L';
 }
+
 GraphicsItem::GraphicsItem(QGraphicsEllipseItem* ellipseItem){
     x1 = static_cast<float>(ellipseItem->rect().topLeft().x());
     y1 = static_cast<float>(ellipseItem->rect().topLeft().y());
@@ -23,7 +24,7 @@ GraphicsItem::GraphicsItem(QGraphicsEllipseItem* ellipseItem){
     color.g = ellipseItem->pen().color().green();
     color.b = ellipseItem->pen().color().blue();
     color.a = ellipseItem->pen().color().alpha();
-    itemType = 2;
+    itemType = 'E';
 
 }
 GraphicsItem::GraphicsItem(QGraphicsRectItem* rectItem){
@@ -36,7 +37,17 @@ GraphicsItem::GraphicsItem(QGraphicsRectItem* rectItem){
     color.g = rectItem->pen().color().green();
     color.b = rectItem->pen().color().blue();
     color.a = rectItem->pen().color().alpha();
-    itemType = 3;
+    itemType = 'R';
+}
+
+GraphicsItem::GraphicsItem() {
+    x1 = 0;
+    y1 = 0;
+    x2 = 0;
+    y2 = 0;
+    width = 0;
+    color = {0,0,0,0};
+    itemType = 0;
 }
 
 
@@ -58,7 +69,7 @@ void to_json(nlohmann::json &j, const GraphicsItem &graphicsItem) {
                        {"y2",    graphicsItem.y2},
                        {"type",  graphicsItem.itemType},
                        {"width", graphicsItem.width},
-                       {"Color", graphicsItem.color}};
+                       {"color", graphicsItem.color}};
 }
 
 

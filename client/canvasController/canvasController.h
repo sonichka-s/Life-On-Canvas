@@ -11,6 +11,7 @@
 #include <QHostAddress>
 #include <QGraphicsItemGroup>
 
+
 #include "serializer.h"
 
 
@@ -28,16 +29,14 @@ private:
     QTimer* timer;
     QTcpSocket* socket;
 
-    Serializer* serializer;
     unsigned int CanvasId;
 
     QVector<QGraphicsLineItem*> currentFreeLineItems;
 
 
     void setTimer(QTimer* timer);
-
-    void sendDiff( std::vector<GraphicsItem> diffArr);
-
+    void sendDiff( const std::vector<GraphicsItem> &diffArr);
+    void displayItems(const std::vector<GraphicsItem> &itemsToDisplay);
     std::vector<GraphicsItem> convertQLineItems(const QVector<QGraphicsLineItem*>& lineItems);
 
 public slots:
@@ -45,7 +44,7 @@ public slots:
     //network processing slots
     void sendRegularRequest();
     void onReadyRead();
-    void onResponseReceived(QString responseStr);
+    void onResponseReceived(const QString &responseStr);
 
     //free curve draw tracking slots
     void onMousePressedFreeCurve();

@@ -19,8 +19,9 @@ struct GraphicsItem {
     float y2;
     int width;
     Color color;
-    int itemType;
+    char itemType;
 
+    GraphicsItem();
     GraphicsItem(QGraphicsLineItem* lineItem);
     GraphicsItem(QGraphicsEllipseItem* ellipseItem);
     GraphicsItem(QGraphicsRectItem* rectItem);
@@ -29,8 +30,6 @@ struct GraphicsItem {
 
 void from_json(const nlohmann::json &j, GraphicsItem &graphicsItem);
 void to_json( nlohmann::json &j, const GraphicsItem &graphicsItem);
-
-
 
 void from_json(const nlohmann::json &j, Color &color_);
 void to_json( nlohmann::json &j, const Color &color_);
