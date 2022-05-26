@@ -16,6 +16,7 @@ nlohmann::json Serializer::serializeDiff(const std::vector<GraphicsItem>& lineIt
 void Serializer::parseCanvas(const std::string& inJson_str, std::vector<GraphicsItem>& itemsToDisplay) {
 
     nlohmann::json j = nlohmann::json::parse(inJson_str);
+    std::vector<GraphicsItem> a;
 
     j["LineItems"].get_to<std::vector<GraphicsItem>>(itemsToDisplay);
 };

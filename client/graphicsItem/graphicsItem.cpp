@@ -11,7 +11,7 @@ GraphicsItem::GraphicsItem(QGraphicsLineItem* lineItem){
     color.g = lineItem->pen().color().green();
     color.b = lineItem->pen().color().blue();
     color.a = lineItem->pen().color().alpha();
-    type = "Line";
+    itemType = 1;
 }
 GraphicsItem::GraphicsItem(QGraphicsEllipseItem* ellipseItem){
     x1 = static_cast<float>(ellipseItem->rect().topLeft().x());
@@ -23,7 +23,7 @@ GraphicsItem::GraphicsItem(QGraphicsEllipseItem* ellipseItem){
     color.g = ellipseItem->pen().color().green();
     color.b = ellipseItem->pen().color().blue();
     color.a = ellipseItem->pen().color().alpha();
-    type = "Ellipse";
+    itemType = 2;
 
 }
 GraphicsItem::GraphicsItem(QGraphicsRectItem* rectItem){
@@ -36,7 +36,7 @@ GraphicsItem::GraphicsItem(QGraphicsRectItem* rectItem){
     color.g = rectItem->pen().color().green();
     color.b = rectItem->pen().color().blue();
     color.a = rectItem->pen().color().alpha();
-    type = "Rectangle";
+    itemType = 3;
 }
 
 
@@ -45,7 +45,7 @@ void from_json(const nlohmann::json &j, GraphicsItem &graphicsItem) {
     j.at("y1").get_to(graphicsItem.y1);
     j.at("x2").get_to(graphicsItem.x2);
     j.at("y2").get_to(graphicsItem.y2);
-    j.at("type").get_to(graphicsItem.type);
+    j.at("type").get_to(graphicsItem.itemType);
     j.at("width").get_to(graphicsItem.width);
     j.at("color").get_to(graphicsItem.color);
 
@@ -56,10 +56,12 @@ void to_json(nlohmann::json &j, const GraphicsItem &graphicsItem) {
                        {"y1",    graphicsItem.y1},
                        {"x2",    graphicsItem.x2},
                        {"y2",    graphicsItem.y2},
-                       {"type",  graphicsItem.type},
+                       {"type",  graphicsItem.itemType},
                        {"width", graphicsItem.width},
                        {"Color", graphicsItem.color}};
 }
+
+
 
 void from_json(const nlohmann::json &j, Color &color_){
     j.at("r").get_to(color_.r);

@@ -31,6 +31,13 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
             onMouseMovedFreeCurve(QGraphicsLineItem * )));
     connect(mainScene, SIGNAL(mouseReleasedFreeCurve()),
             this, SLOT(onMouseReleasedFreeCurve()));
+
+    connect(mainScene, SIGNAL(mouseReleasedEllipse(QGraphicsEllipseItem* )),
+            this, SLOT(onMouseReleasedEllipse(QGraphicsEllipseItem* )));
+    connect(mainScene, SIGNAL(mouseReleasedSingleLine(QGraphicsLineItem* )),
+            this, SLOT(onMouseReleasedSingleLine(QGraphicsLineItem* )));
+    connect(mainScene, SIGNAL(mouseReleasedRectangle(QGraphicsRectItem* )),
+            this, SLOT(onMouseReleasedRectangle(QGraphicsRectItem* )));
 }
 
 void CanvasController::initCanvas() {
@@ -116,15 +123,18 @@ void CanvasController::onMouseReleasedFreeCurve(){
 
 void CanvasController::onMouseReleasedSingleLine(QGraphicsLineItem* lineItem){
 
+    GraphicsItem itemToSend(lineItem);
 }
 
 
 void CanvasController::onMouseReleasedEllipse(QGraphicsEllipseItem* ellipseItem){
 
+    GraphicsItem itemToSend(ellipseItem);
 }
 
 
 void CanvasController::onMouseReleasedRectangle(QGraphicsRectItem* rectItem){
+    GraphicsItem itemToSend(rectItem);
 
 }
 

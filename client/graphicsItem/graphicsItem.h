@@ -1,3 +1,4 @@
+#include <string>
 #include <nlohmann/json.hpp>
 #include <QGraphicsLineItem>
 #include <QGraphicsEllipseItem>
@@ -18,7 +19,7 @@ struct GraphicsItem {
     float y2;
     int width;
     Color color;
-    std::string type;
+    int itemType;
 
     GraphicsItem(QGraphicsLineItem* lineItem);
     GraphicsItem(QGraphicsEllipseItem* ellipseItem);
@@ -29,5 +30,7 @@ struct GraphicsItem {
 void from_json(const nlohmann::json &j, GraphicsItem &graphicsItem);
 void to_json( nlohmann::json &j, const GraphicsItem &graphicsItem);
 
-void from_json(const nlohmann::json &j, Color &color_x);
+
+
+void from_json(const nlohmann::json &j, Color &color_);
 void to_json( nlohmann::json &j, const Color &color_);

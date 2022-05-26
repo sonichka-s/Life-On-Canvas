@@ -5,7 +5,6 @@
 #include <string>
 #include <nlohmann/json.hpp>
 
-
 #include "graphicsItem.h"
 //#include "canvasController.h"
 
