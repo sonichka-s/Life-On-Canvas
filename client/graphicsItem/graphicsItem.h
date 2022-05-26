@@ -2,6 +2,7 @@
 #include <QGraphicsLineItem>
 #include <QGraphicsEllipseItem>
 #include <QGraphicsRectItem>
+#include <QPen>
 
 struct Color {
     int r;

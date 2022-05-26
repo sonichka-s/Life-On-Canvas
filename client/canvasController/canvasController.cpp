@@ -131,20 +131,8 @@ void CanvasController::onMouseReleasedRectangle(QGraphicsRectItem* rectItem){
 std::vector<GraphicsItem> CanvasController::convertQLineItems(const QVector<QGraphicsLineItem *> &lineItems) {
 
     std::vector<GraphicsItem> diffArray;
-
     for ( int i = 0; i < lineItems.size(); ++i) {
-
-        GraphicsItem itemToConvert;
-        itemToConvert.x1 = static_cast<float>(lineItems[i]->line().x1());
-        itemToConvert.y1 = static_cast<float>(lineItems[i]->line().y1());
-        itemToConvert.x2 = static_cast<float>(lineItems[i]->line().x2());
-        itemToConvert.y2 = static_cast<float>(lineItems[i]->line().y2());
-        itemToConvert.width = lineItems[i]->pen().width();
-        itemToConvert.color.r = lineItems[i]->pen().color().red();
-        itemToConvert.color.g = lineItems[i]->pen().color().green();
-        itemToConvert.color.b = lineItems[i]->pen().color().blue();
-        itemToConvert.color.a = lineItems[i]->pen().color().alpha();
-        itemToConvert.type = "Line";
+        GraphicsItem itemToConvert(lineItems[i]);
         diffArray.push_back(itemToConvert);
     }
     return diffArray;

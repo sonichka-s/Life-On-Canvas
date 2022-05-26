@@ -14,10 +14,29 @@ GraphicsItem::GraphicsItem(QGraphicsLineItem* lineItem){
     type = "Line";
 }
 GraphicsItem::GraphicsItem(QGraphicsEllipseItem* ellipseItem){
+    x1 = static_cast<float>(ellipseItem->rect().topLeft().x());
+    y1 = static_cast<float>(ellipseItem->rect().topLeft().y());
+    x2 = static_cast<float>(ellipseItem->rect().bottomRight().x());
+    y2 = static_cast<float>(ellipseItem->rect().bottomRight().y());
+    width = ellipseItem->pen().width();
+    color.r = ellipseItem->pen().color().red();
+    color.g = ellipseItem->pen().color().green();
+    color.b = ellipseItem->pen().color().blue();
+    color.a = ellipseItem->pen().color().alpha();
+    type = "Ellipse";
 
 }
 GraphicsItem::GraphicsItem(QGraphicsRectItem* rectItem){
-
+    x1 = static_cast<float>(rectItem->rect().topLeft().x());
+    y1 = static_cast<float>(rectItem->rect().topLeft().y());
+    x2 = static_cast<float>(rectItem->rect().bottomRight().x());
+    y2 = static_cast<float>(rectItem->rect().bottomRight().y());
+    width = rectItem->pen().width();
+    color.r = rectItem->pen().color().red();
+    color.g = rectItem->pen().color().green();
+    color.b = rectItem->pen().color().blue();
+    color.a = rectItem->pen().color().alpha();
+    type = "Rectangle";
 }
 
 
