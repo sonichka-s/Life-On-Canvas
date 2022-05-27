@@ -64,7 +64,10 @@ void CanvasController::setTimer(QTimer* timer) {
 void CanvasController::sendDiff(const std::vector<GraphicsItem> &diffArr) {
 
     std::string stringToSend = Serializer::serializeDiff(diffArr, CanvasId);
+
     QString toSend = QString::fromUtf8(stringToSend.c_str());
+    qDebug() << stringToSend.c_str();
+
 
 
     socket->write(toSend.toUtf8());
@@ -83,11 +86,11 @@ void CanvasController::sendRegularRequest() {
 
     QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
 
-    socket->write(toSend.toUtf8());
+   socket->write(toSend.toUtf8());
 
-    if (!socket->waitForReadyRead()){
+   if (!socket->waitForReadyRead()){
         qDebug() << "connection is lost";
-    }
+   }
 }
 
 void CanvasController::onReadyRead(){
@@ -156,11 +159,10 @@ void CanvasController::displayItems(const std::vector<GraphicsItem> &itemsToDisp
             QGraphicsLineItem *lineItem = new QGraphicsLineItem();
             lineItem->setLine(graphicsItem.x1, graphicsItem.y1,
                               graphicsItem.x2, graphicsItem.y2);
+
+            QColor color(graphicsItem.color.r, graphicsItem.color.g, graphicsItem.color.b, graphicsItem.color.a);
             QPen pen;
-            pen.color().setRed(graphicsItem.color.r);
-            pen.color().setGreen(graphicsItem.color.g);
-            pen.color().setBlue(graphicsItem.color.b);
-            pen.color().setAlpha(graphicsItem.color.a);
+            pen.setColor(color);
             pen.setWidth(graphicsItem.width);
             lineItem->setPen(pen);
 
@@ -169,13 +171,11 @@ void CanvasController::displayItems(const std::vector<GraphicsItem> &itemsToDisp
         } else if (graphicsItem.itemType == 'E'){
             QGraphicsEllipseItem* ellipseItem = new QGraphicsEllipseItem();
             ellipseItem->setRect(graphicsItem.x1, graphicsItem.y1,
-                                 graphicsItem.x2, graphicsItem.y2);
+                                 graphicsItem.x2 - graphicsItem.x1, graphicsItem.y2 - graphicsItem.y1);
 
+            QColor color(graphicsItem.color.r, graphicsItem.color.g, graphicsItem.color.b, graphicsItem.color.a);
             QPen pen;
-            pen.color().setRed(graphicsItem.color.r);
-            pen.color().setGreen(graphicsItem.color.g);
-            pen.color().setBlue(graphicsItem.color.b);
-            pen.color().setAlpha(graphicsItem.color.a);
+            pen.setColor(color);
             pen.setWidth(graphicsItem.width);
             ellipseItem->setPen(pen);
 
@@ -184,12 +184,11 @@ void CanvasController::displayItems(const std::vector<GraphicsItem> &itemsToDisp
         } else if (graphicsItem.itemType == 'R'){
             QGraphicsRectItem* rectItem = new QGraphicsRectItem();
             rectItem->setRect(graphicsItem.x1, graphicsItem.y1,
-                              graphicsItem.x2, graphicsItem.y2);
+                              graphicsItem.x2 - graphicsItem.x1, graphicsItem.y2 - graphicsItem.y1);
+
+            QColor color(graphicsItem.color.r, graphicsItem.color.g, graphicsItem.color.b, graphicsItem.color.a);
             QPen pen;
-            pen.color().setRed(graphicsItem.color.r);
-            pen.color().setGreen(graphicsItem.color.g);
-            pen.color().setBlue(graphicsItem.color.b);
-            pen.color().setAlpha(graphicsItem.color.a);
+            pen.setColor(color);
             pen.setWidth(graphicsItem.width);
             rectItem->setPen(pen);
 
