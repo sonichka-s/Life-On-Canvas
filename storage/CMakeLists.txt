@@ -1,3 +1,5 @@
-add_library(frame storage.h)
+add_subdirectory(graphicsItem)
 
-target_include_directories(frame PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+add_subdirectory(JSONController)
+
+add_subdirectory(SQLController)
