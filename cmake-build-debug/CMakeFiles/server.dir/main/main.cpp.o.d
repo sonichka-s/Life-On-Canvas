@@ -1693,4 +1693,5 @@ CMakeFiles/server.dir/main/main.cpp.o: \
  /usr/include/nlohmann/detail/macro_unscope.hpp \
  /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
  /home/sonichka/Documents/Life-On-Canvas/src/include/websocket_session.h \
- /home/sonichka/Documents/Life-On-Canvas/src/include/listener.h
+ /home/sonichka/Documents/Life-On-Canvas/src/include/listener.h \
+ /home/sonichka/Documents/Life-On-Canvas/src/include/request_handler.h

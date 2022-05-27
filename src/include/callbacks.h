@@ -27,13 +27,13 @@ struct cb_error {
 struct ws_callbacks {
     cb_error err;
     std::function<void()> on_listen = NULL;
-    std::function<void(void*)> on_open;
-    std::function<void(std::string*, const void*)> on_message;
+    std::function<void(void *)> on_open;
+    std::function<void(std::string *, const void *)> on_message;
     std::function<void()> on_close;
 
     std::function<void(cb_error)> on_error;
 
-    void trigger_on_open(void* con = NULL) {
+    void trigger_on_open(void *con = NULL) {
         if (this->on_open != 0)
             this->on_open(con);
     }
@@ -43,7 +43,7 @@ struct ws_callbacks {
             this->on_listen();
     }
 
-    void trigger_on_message(std::string* msg, void* con) {
+    void trigger_on_message(std::string *msg, void *con) {
         if (this->on_message != 0) {
             this->on_message(msg, con);
         }
@@ -55,7 +55,7 @@ struct ws_callbacks {
     }
 
     void trigger_on_error(std::string e_msg) {
-        if(this->on_error != 0){
+        if (this->on_error != 0) {
             this->err.msg = e_msg;
             this->on_error(this->err);
         }
@@ -63,11 +63,11 @@ struct ws_callbacks {
 };
 
 struct server_manager {
-    std::string ip = "127.0.0.1";
+    std::string ip = "192.168.1.10";
     int port = 8080;
     int threads = 1;
     ws_callbacks cb;
-    std::vector<void*>* sessions;
+    std::vector<void *> *sessions;
 };
 
 struct trigger {
@@ -80,15 +80,15 @@ struct trigger {
 
 class triggers {
 public:
-    std::vector<trigger*> elems;
+    std::vector<trigger *> elems;
 
-    trigger* add(
+    trigger *add(
             std::string cmd,
-    std::function<void(const json, std::function<void(const json)>)> do_handle,
-    std::function<void(const json)> on_response,
-    std::function<void(const json)> on_progress
-            ) {
-        trigger* trigger = new struct trigger();
+            std::function<void(const json, std::function<void(const json)>)> do_handle,
+            std::function<void(const json)> on_response,
+            std::function<void(const json)> on_progress
+    ) {
+        trigger *trigger = new struct trigger();
         trigger->cmd = cmd;
 
         if (do_handle != 0) {
@@ -108,10 +108,10 @@ public:
         return trigger;
     }
 
-    trigger* request_type(std::string req) {
+    trigger *request_type(std::string req) {
         for (int i = 0; i < elems.size(); ++i) {
             if (req == elems[i]->cmd)
-             return elems[i];
+                return elems[i];
         }
     }
 };

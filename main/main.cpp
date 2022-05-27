@@ -5,7 +5,7 @@
 #include <chrono>
 #include <thread_controller.h>
 
-thread_controller* tc = new thread_controller;
+thread_controller *tc = new thread_controller;
 
 //void timerFunc(){
 //    int i = 0;
@@ -18,14 +18,13 @@ thread_controller* tc = new thread_controller;
 
 
 
-int main(int argc, char** argv)
-{
+int main(int argc, char **argv) {
 
 
 //    wscb->options->asClient = true;
-//    wscb->options->address = "192.168.1.5";
+    tc->manager->ip = "192.168.1.10";
 
-    tc->manager->cb.on_open = [](void* conn) -> void{
+    tc->manager->cb.on_open = [](void *conn) -> void {
         std::cout << "[WS] Connection opened!" << std::endl;
 
 //        wscb->simple("testing", [](json json_) -> void{
@@ -38,15 +37,15 @@ int main(int argc, char** argv)
     };
 
 //    //uncomment "onListening" to start a WebSocket server instead
-    tc->manager->cb.on_listen = []() -> void{
+    tc->manager->cb.on_listen = []() -> void {
         std::cout << "[WS] Server listening! \n";
     };
 
-    tc->manager->cb.on_error = [](cb_error error) -> void{
-        std::cout << "[WS] Error: " << error.msg<< ": " << error.ec.message() << std::endl;
+    tc->manager->cb.on_error = [](cb_error error) -> void {
+        std::cout << "[WS] Error: " << error.msg << ": " << error.ec.message() << std::endl;
     };
 
-    tc->manager->cb.on_close = []() -> void{
+    tc->manager->cb.on_close = []() -> void {
         std::cout << "[WS] Session closed: <reason>" << std::endl;
     };
 

@@ -26,11 +26,10 @@ using json = nlohmann::json;
 class thread_controller {
     std::thread thread_;
     triggers *triggers_;
-    request_handler request_handler_;
 public:
     server_manager *manager;
 
-    thread_controller() : request_handler_(triggers_) {
+    thread_controller() {
         manager = new server_manager;
         triggers_ = new triggers;
         manager->sessions = new std::vector<void *>();
@@ -49,6 +48,8 @@ public:
 
         std::vector<std::thread> threads;
         threads.reserve(manager->threads - 1);
+
+        request_handler request_handler_(this->triggers_);
         request_handler_.set_types();
 
         for (auto i = manager->threads - 1; i > 0; --i) {
@@ -83,8 +84,10 @@ public:
         }
 
         trigger *trig = triggers_->request_type(json_["Type"].get<std::string>());
+        std::cout << "\n" << "Request type determined";
 
         trig->do_handle(json_, [this, json_, con](json response) {
+            std::cout << "\n" << "Response prepared";
             this->send_response(response, NULL, con);
         });
     }
@@ -93,12 +96,14 @@ public:
         if (con != NULL) {
             websocket_session *con_ = ((websocket_session *) con);
             con_->response_queue->push_back(json_.dump());
+            std::cout << "\n" << "Session appended to respond queue";
             if (!con_->writing) con_->do_read();
         } else {
             for (int i = 0; i < manager->sessions->size(); ++i) {
                 std::vector<void *> sessions = *manager->sessions;
                 websocket_session *con_ = ((websocket_session *) sessions[i]);
                 con_->response_queue->push_back(json_.dump());
+                std::cout << "\n" << "Session appended to respond queue";
                 if (!con_->writing) con_->do_read();
             }
         }
