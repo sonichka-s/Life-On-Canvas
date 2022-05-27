@@ -12,6 +12,7 @@
 #include <callbacks.h>
 #include <websocket_session.h>
 #include <listener.h>
+#include <request_handler.h>
 
 #include <nlohmann/json.hpp>
 
@@ -24,30 +25,31 @@ using json = nlohmann::json;
 
 class thread_controller {
     std::thread thread_;
-    triggers* triggers_;
+    triggers *triggers_;
+    request_handler request_handler_;
 public:
-    server_manager* manager;
+    server_manager *manager;
 
-    thread_controller() {
+    thread_controller() : request_handler_(triggers_) {
         manager = new server_manager;
         triggers_ = new triggers;
-        manager->sessions = new std::vector<void*>();
-
+        manager->sessions = new std::vector<void *>();
     }
 
-    void server_thread(server_manager* manager) {
-        asio::io_context ioc {
-            manager->threads
+    void server_thread(server_manager *manager) {
+        asio::io_context ioc{
+                manager->threads
         };
 
         std::make_shared<listener>(ioc,
-                                   tcp::endpoint {
-            asio::ip::make_address(manager->ip.c_str()),
-            static_cast<unsigned short>(manager->port)
-        })->run();
+                                   tcp::endpoint{
+                                           asio::ip::make_address(manager->ip.c_str()),
+                                           static_cast<unsigned short>(manager->port)
+                                   })->run();
 
         std::vector<std::thread> threads;
         threads.reserve(manager->threads - 1);
+        request_handler_.set_types();
 
         for (auto i = manager->threads - 1; i > 0; --i) {
             threads.emplace_back([&ioc] {
@@ -59,7 +61,7 @@ public:
     }
 
     void start_server() {
-        manager->cb.on_message = [this] (std::string* msg, const void* con)->void {
+        manager->cb.on_message = [this](std::string *msg, const void *con) -> void {
             this->handle_message(*msg, con);
         };
 
@@ -70,33 +72,32 @@ public:
         thread_.detach();
     }
 
-    void handle_message(std::string msg, const void* con) {
+    void handle_message(std::string msg, const void *con) {
         json json_;
 
         try {
             json_ = json::parse(msg.c_str());
-        } catch (std::invalid_argument& invalid){
+        } catch (std::invalid_argument &invalid) {
             std::cout << "\n" << "Error reading JSON " << invalid.what();
             return;
         }
 
-        trigger* trig = triggers_->request_type(json_["Type"].get<std::string>());
+        trigger *trig = triggers_->request_type(json_["Type"].get<std::string>());
 
         trig->do_handle(json_, [this, json_, con](json response) {
             this->send_response(response, NULL, con);
         });
-     }
+    }
 
-     void send_response(json json_, std::function<void(json)> on_response = NULL, const void* con = NULL) {
+    void send_response(json json_, std::function<void(json)> on_response = NULL, const void *con = NULL) {
         if (con != NULL) {
-            websocket_session* con_ = ((websocket_session*)con);
+            websocket_session *con_ = ((websocket_session *) con);
             con_->response_queue->push_back(json_.dump());
             if (!con_->writing) con_->do_read();
-        }
-        else {
+        } else {
             for (int i = 0; i < manager->sessions->size(); ++i) {
-                std::vector<void*> sessions = *manager->sessions;
-                websocket_session* con_ = ((websocket_session*)sessions[i]);
+                std::vector<void *> sessions = *manager->sessions;
+                websocket_session *con_ = ((websocket_session *) sessions[i]);
                 con_->response_queue->push_back(json_.dump());
                 if (!con_->writing) con_->do_read();
             }

@@ -30,6 +30,7 @@ public:
     websocket_session(tcp::socket&& socket) : ws_(std::move(socket)) {}
 
     void run() {
+        sessionID = (uint64_t)std::time(nullptr);
 
         ws_.set_option(websocket::stream_base::timeout::suggested(beast::role_type::server));
         ws_.set_option(websocket::stream_base::decorator([](websocket::response_type& res){
@@ -43,8 +44,13 @@ public:
                         shared_from_this()));
     }
 
-    void on_accept(beast::error_code ec)
-    {
+    void on_accept(beast::error_code ec) {
+
+        if(ec) {
+            manager->cb.trigger_on_error("accept");
+            return;
+        }
+
         sessionID = (uint64_t)std::time(nullptr);
         manager->sessions->push_back(this);
         manager->cb.trigger_on_open(this);
@@ -85,6 +91,10 @@ public:
             }
         }
 
+        if(ec) {
+            manager->cb.trigger_on_error("read");
+        }
+
         auto msg = new std::string(beast::buffers_to_string(buffer_.data()));
         if (msg->length() > 0)
             manager->cb.on_message(msg, this);
@@ -114,6 +124,12 @@ public:
     }
 
     void on_write(beast::error_code ec, std::size_t bytes_transferred) {
+
+        if(ec) {
+            manager->cb.trigger_on_error("write");
+            return;
+        }
+
         if (response_queue->size() > 0) {
             response_queue->erase(response_queue->begin());
             std::vector<std::string> q = *response_queue;

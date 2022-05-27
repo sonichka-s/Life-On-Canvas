@@ -9,6 +9,8 @@
 #include <boost/asio/strand.hpp>
 #include <cstdlib>
 #include <iostream>
+#include <callbacks.h>
+#include <websocket_session.h>
 
 namespace beast = boost::beast;
 namespace asio = boost::asio;
@@ -16,6 +18,7 @@ using tcp = boost::asio::ip::tcp;
 
 class listener : public std::enable_shared_from_this<listener> {
 public:
+    server_manager* manager;
     listener(asio::io_context& ioc,
              tcp::endpoint ep);
 

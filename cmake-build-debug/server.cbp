@@ -24,6 +24,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src/include"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -46,6 +47,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src/include"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -90,6 +92,7 @@
 				<Compiler>
 					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src/include"/>
 					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src/server"/>
+					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -114,6 +117,7 @@
 				<Compiler>
 					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src/include"/>
 					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src/server"/>
+					<Add directory="/home/sonichka/Documents/Life-On-Canvas/src"/>
 					<Add directory="/usr/include/c++/11"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
 					<Add directory="/usr/include/c++/11/backward"/>
@@ -140,6 +144,9 @@
 			<Option target="server_lib"/>
 		</Unit>
 		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/listener.cpp">
+			<Option target="server_lib"/>
+		</Unit>
+		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/request_handler.cpp">
 			<Option target="server_lib"/>
 		</Unit>
 		<Unit filename="/home/sonichka/Documents/Life-On-Canvas/src/server/thread_controller.cpp">

@@ -53,6 +53,13 @@ struct ws_callbacks {
         if (this->on_close != 0)
             this->on_close();
     }
+
+    void trigger_on_error(std::string e_msg) {
+        if(this->on_error != 0){
+            this->err.msg = e_msg;
+            this->on_error(this->err);
+        }
+    }
 };
 
 struct server_manager {

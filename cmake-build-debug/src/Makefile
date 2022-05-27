@@ -202,6 +202,30 @@ server/listener.cpp.s:
 	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/listener.cpp.s
 .PHONY : server/listener.cpp.s
 
+server/request_handler.o: server/request_handler.cpp.o
+.PHONY : server/request_handler.o
+
+# target to build an object file
+server/request_handler.cpp.o:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/request_handler.cpp.o
+.PHONY : server/request_handler.cpp.o
+
+server/request_handler.i: server/request_handler.cpp.i
+.PHONY : server/request_handler.i
+
+# target to preprocess a source file
+server/request_handler.cpp.i:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/request_handler.cpp.i
+.PHONY : server/request_handler.cpp.i
+
+server/request_handler.s: server/request_handler.cpp.s
+.PHONY : server/request_handler.s
+
+# target to generate assembly for a file
+server/request_handler.cpp.s:
+	cd /home/sonichka/Documents/Life-On-Canvas/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/server_lib.dir/build.make src/CMakeFiles/server_lib.dir/server/request_handler.cpp.s
+.PHONY : server/request_handler.cpp.s
+
 server/thread_controller.o: server/thread_controller.cpp.o
 .PHONY : server/thread_controller.o
 
@@ -292,6 +316,9 @@ help:
 	@echo "... server/listener.o"
 	@echo "... server/listener.i"
 	@echo "... server/listener.s"
+	@echo "... server/request_handler.o"
+	@echo "... server/request_handler.i"
+	@echo "... server/request_handler.s"
 	@echo "... server/thread_controller.o"
 	@echo "... server/thread_controller.i"
 	@echo "... server/thread_controller.s"

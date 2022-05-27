@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/sonichka/Documents/Life-On-Canvas/src/server/callbacks.cpp" "src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/callbacks.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/deserializer.cpp" "src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/deserializer.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/listener.cpp" "src/CMakeFiles/server_lib.dir/server/listener.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/listener.cpp.o.d"
+  "/home/sonichka/Documents/Life-On-Canvas/src/server/request_handler.cpp" "src/CMakeFiles/server_lib.dir/server/request_handler.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/request_handler.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/thread_controller.cpp" "src/CMakeFiles/server_lib.dir/server/thread_controller.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/thread_controller.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/utility.cpp" "src/CMakeFiles/server_lib.dir/server/utility.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/utility.cpp.o.d"
   "/home/sonichka/Documents/Life-On-Canvas/src/server/websocket_session.cpp" "src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o" "gcc" "src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o.d"

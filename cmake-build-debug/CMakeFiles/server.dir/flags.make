@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/sonichka/Documents/Life-On-Canvas/src/include
 
 CXX_FLAGS = -g -std=gnu++20
 
