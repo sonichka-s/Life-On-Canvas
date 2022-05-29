@@ -30,7 +30,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 class DataBase {
 public:
     void CreateCanvas(int table_id); // create canvas with some ID
-    void Insert(int table_id, int Key, GraphicsItem line); //push line into DB
+    int Insert(int table_id, int Key, GraphicsItem line); //push line into DB
     int Get(int table_id, int Key, std::vector<GraphicsItem> &line);
 
 private:
@@ -71,7 +71,7 @@ void DataBase::CreateCanvas(int table_id) {
     sqlite3_close(db);
 }
 
-void DataBase::Insert(int table_id, int Key, GraphicsItem line) {
+int DataBase::Insert(int table_id, int Key, GraphicsItem line) {
     rc = sqlite3_open(filename, &db);
 
     /* Create SQL statement */
@@ -89,11 +89,14 @@ void DataBase::Insert(int table_id, int Key, GraphicsItem line) {
     if (rc != SQLITE_OK) {
         fprintf(stderr, "SQL error: %s\n", zErrMsg);
         sqlite3_free(zErrMsg);
+        return 0;
     } else {
         fprintf(stdout, "Records created successfully\n");
     }
 
     sqlite3_close(db);
+
+    return 1;
 }
 
 int DataBase::Get(int table_id, int Key, std::vector<GraphicsItem> &line) {
@@ -103,11 +106,10 @@ int DataBase::Get(int table_id, int Key, std::vector<GraphicsItem> &line) {
 
     /* Create SQL statement */
     std::string sql = "Select X1, Y1, X2, Y2, R, G, B, A, Width, ItemType from CanvasID_" + std::to_string(table_id) +
-                      " where Key >= " + std::to_string(Key) + " ;";
+                      " where Key > " + std::to_string(Key) + " ;";
 
     /* Execute SQL statement */
     sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0);
-    sqlite3_step(stmt);
 
     uint32_t X1, Y1, X2, Y2;
     uint8_t R, G, B, A;
@@ -129,23 +131,23 @@ int DataBase::Get(int table_id, int Key, std::vector<GraphicsItem> &line) {
                 A = sqlite3_column_int(stmt, 7);
                 width = sqlite3_column_int(stmt, 8);
                 itemType = sqlite3_column_int(stmt, 9);
-                row++;
                 line.push_back(GraphicsItem(X1, Y1, X2, Y2, R, G, B, A, width, itemType));
                 break;
-
             case SQLITE_DONE:
                 done = true;
                 break;
 
             default:
                 fprintf(stderr, "Failed.\n");
-                return 1;
+                return 0;
         }
     }
 
     sqlite3_finalize(stmt);
 
     sqlite3_close(db);
+
+    return 1;
 }
 
 #endif //LIFEONCANVAS_STORAGE_H

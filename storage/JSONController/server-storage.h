@@ -48,12 +48,6 @@ void to_json(json &j, const std::vector<GraphicsItem> &vec, const uint Key) {
     j["CanvasId"] = Key;
 }
 
-//DB -> vector -> JSON
-void FromDB(json &j, std::vector<GraphicsItem> &line){
-    DataBase db;
-    db.Get(42069,1,line);
-    to_json(j,line,1);
-}
 
 //get object from JSON
 void from_json(const json &j, GraphicsItem &Item) {
@@ -88,17 +82,29 @@ void GetVector(const json &j, std::vector<GraphicsItem> &vec) {
 }
 
 //JSON -> GraphicsItem -> DB
-void IntoDB(const json &j){
-    uint key = j["CanvasId"];
-    json array = j["GraphicsItem"];
+int IntoDB(const json &put){
+    json array = put["GraphicsItem"];
     std::vector<GraphicsItem> arr;
     GetVector(array,arr);
 
     DataBase db;
     for (size_t i = 0; i < arr.size(); ++i) {
         auto line = array[i].get<GraphicsItem>();
-        db.Insert(42069,key,line);
+        if (!db.Insert(42069,put["CanvasId"],line)) return 0;
     }
+
+    return 1;
+}
+
+//DB -> vector -> JSON
+json FromDB(const json &get){
+    DataBase db;
+    std::vector<GraphicsItem> line;
+    if(!db.Get(42069,get["CanvasId"],line)) return nullptr;
+
+    json j;
+    to_json(j,line,1);
+    return j;
 }
 
 #endif //TUTORIAL_SERVER_STORAGE_H
