@@ -40,8 +40,9 @@ listener::listener(asio::io_context &ioc,
 //    manager->cb.trigger_on_listen();
 }
 
-void listener::run() {
+void listener::run(server_manager *server_manager) {
     beast::error_code ec;
+    this->manager = server_manager;
 
     if (ec) {
         manager->cb.trigger_on_error("run");

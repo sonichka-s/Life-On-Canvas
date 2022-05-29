@@ -44,7 +44,7 @@ public:
                                    tcp::endpoint{
                                            asio::ip::make_address(manager->ip.c_str()),
                                            static_cast<unsigned short>(manager->port)
-                                   })->run();
+                                   })->run(manager);
 
         std::vector<std::thread> threads;
         threads.reserve(manager->threads - 1);
@@ -78,6 +78,7 @@ public:
 
         try {
             json_ = json::parse(msg.c_str());
+            std::cout << '\n' << json_;
         } catch (std::invalid_argument &invalid) {
             std::cout << "\n" << "Error reading JSON " << invalid.what();
             return;

@@ -5,8 +5,6 @@
 #include <chrono>
 #include <thread_controller.h>
 
-thread_controller *tc = new thread_controller;
-
 //void timerFunc(){
 //    int i = 0;
 //    for (;;){
@@ -19,10 +17,10 @@ thread_controller *tc = new thread_controller;
 
 
 int main(int argc, char **argv) {
-
+    thread_controller *tc = new thread_controller;
 
 //    wscb->options->asClient = true;
-    tc->manager->ip = "192.168.1.10";
+//    tc->manager->ip = "127.0.0.1";
 
     tc->manager->cb.on_open = [](void *conn) -> void {
         std::cout << "[WS] Connection opened!" << std::endl;
@@ -42,7 +40,7 @@ int main(int argc, char **argv) {
     };
 
     tc->manager->cb.on_error = [](cb_error error) -> void {
-        std::cout << "[WS] Error: " << error.msg << ": " << error.ec.message() << std::endl;
+        std::cout << '\n' << "[WS] Error: " << error.msg << ": " << error.ec.message() << std::endl;
     };
 
     tc->manager->cb.on_close = []() -> void {
@@ -88,5 +86,5 @@ int main(int argc, char **argv) {
     std::cin.get();
 
 
-    return EXIT_SUCCESS;
+//    return EXIT_SUCCESS;
 }

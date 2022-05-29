@@ -33,6 +33,15 @@ public:
                     //add DB request
                     prepare_respond(data_);
                 });
+
+        custom(
+                "Test",
+                [](json json_, std::function<void(const json)> prepare_response) {
+                    json data_ = json::parse(json_.dump());
+                    std::cout << "\n" << "TEST request handled";
+
+                    prepare_response(data_);
+                });
     }
 
 private:

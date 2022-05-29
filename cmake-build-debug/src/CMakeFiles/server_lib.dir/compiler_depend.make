@@ -9163,6 +9163,76 @@ src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o: ../src/server/webs
   /usr/include/boost/asio/detail/strand_service.hpp \
   /usr/include/boost/asio/detail/impl/strand_service.hpp \
   /usr/include/boost/asio/detail/impl/strand_service.ipp \
+  /usr/include/nlohmann/json.hpp \
+  /usr/include/nlohmann/adl_serializer.hpp \
+  /usr/include/nlohmann/detail/conversions/from_json.hpp \
+  /usr/include/c++/11/forward_list \
+  /usr/include/c++/11/bits/forward_list.h \
+  /usr/include/c++/11/bits/forward_list.tcc \
+  /usr/include/c++/11/valarray \
+  /usr/include/c++/11/bits/valarray_array.h \
+  /usr/include/c++/11/bits/valarray_array.tcc \
+  /usr/include/c++/11/bits/valarray_before.h \
+  /usr/include/c++/11/bits/slice_array.h \
+  /usr/include/c++/11/bits/valarray_after.h \
+  /usr/include/c++/11/bits/gslice.h \
+  /usr/include/c++/11/bits/gslice_array.h \
+  /usr/include/c++/11/bits/mask_array.h \
+  /usr/include/c++/11/bits/indirect_array.h \
+  /usr/include/nlohmann/detail/exceptions.hpp \
+  /usr/include/nlohmann/detail/value_t.hpp \
+  /usr/include/nlohmann/detail/string_escape.hpp \
+  /usr/include/nlohmann/detail/macro_scope.hpp \
+  /usr/include/nlohmann/thirdparty/hedley/hedley.hpp \
+  /usr/include/nlohmann/detail/meta/detected.hpp \
+  /usr/include/nlohmann/detail/meta/void_t.hpp \
+  /usr/include/nlohmann/detail/input/position_t.hpp \
+  /usr/include/nlohmann/detail/meta/cpp_future.hpp \
+  /usr/include/nlohmann/detail/meta/identity_tag.hpp \
+  /usr/include/nlohmann/detail/meta/type_traits.hpp \
+  /usr/include/nlohmann/detail/iterators/iterator_traits.hpp \
+  /usr/include/nlohmann/detail/meta/call_std/begin.hpp \
+  /usr/include/nlohmann/detail/meta/call_std/end.hpp \
+  /usr/include/nlohmann/json_fwd.hpp \
+  /usr/include/c++/11/filesystem \
+  /usr/include/c++/11/bits/fs_fwd.h \
+  /usr/include/c++/11/bits/fs_path.h \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/codecvt \
+  /usr/include/c++/11/bits/fs_dir.h \
+  /usr/include/c++/11/bits/fs_ops.h \
+  /usr/include/nlohmann/detail/conversions/to_json.hpp \
+  /usr/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+  /usr/include/nlohmann/byte_container_with_subtype.hpp \
+  /usr/include/nlohmann/detail/hash.hpp \
+  /usr/include/nlohmann/detail/input/binary_reader.hpp \
+  /usr/include/nlohmann/detail/input/input_adapters.hpp \
+  /usr/include/nlohmann/detail/input/json_sax.hpp \
+  /usr/include/nlohmann/detail/input/lexer.hpp \
+  /usr/include/nlohmann/detail/meta/is_sax.hpp \
+  /usr/include/nlohmann/detail/input/parser.hpp \
+  /usr/include/nlohmann/detail/iterators/internal_iterator.hpp \
+  /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+  /usr/include/nlohmann/detail/iterators/iter_impl.hpp \
+  /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+  /usr/include/nlohmann/detail/json_pointer.hpp \
+  /usr/include/nlohmann/detail/json_ref.hpp \
+  /usr/include/nlohmann/detail/output/binary_writer.hpp \
+  /usr/include/nlohmann/detail/output/output_adapters.hpp \
+  /usr/include/nlohmann/detail/output/serializer.hpp \
+  /usr/include/nlohmann/detail/conversions/to_chars.hpp \
+  /usr/include/nlohmann/ordered_map.hpp \
+  /usr/include/nlohmann/detail/macro_unscope.hpp \
+  /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
   ../src/include/callbacks.h \
   /usr/include/boost/asio.hpp \
   /usr/include/boost/asio/awaitable.hpp \
@@ -9459,77 +9529,7 @@ src/CMakeFiles/server_lib.dir/server/websocket_session.cpp.o: ../src/server/webs
   /usr/include/boost/asio/write_at.hpp \
   /usr/include/boost/asio/impl/write_at.hpp \
   /usr/include/c++/11/iostream \
-  /usr/include/c++/11/thread \
-  /usr/include/nlohmann/json.hpp \
-  /usr/include/nlohmann/adl_serializer.hpp \
-  /usr/include/nlohmann/detail/conversions/from_json.hpp \
-  /usr/include/c++/11/forward_list \
-  /usr/include/c++/11/bits/forward_list.h \
-  /usr/include/c++/11/bits/forward_list.tcc \
-  /usr/include/c++/11/valarray \
-  /usr/include/c++/11/bits/valarray_array.h \
-  /usr/include/c++/11/bits/valarray_array.tcc \
-  /usr/include/c++/11/bits/valarray_before.h \
-  /usr/include/c++/11/bits/slice_array.h \
-  /usr/include/c++/11/bits/valarray_after.h \
-  /usr/include/c++/11/bits/gslice.h \
-  /usr/include/c++/11/bits/gslice_array.h \
-  /usr/include/c++/11/bits/mask_array.h \
-  /usr/include/c++/11/bits/indirect_array.h \
-  /usr/include/nlohmann/detail/exceptions.hpp \
-  /usr/include/nlohmann/detail/value_t.hpp \
-  /usr/include/nlohmann/detail/string_escape.hpp \
-  /usr/include/nlohmann/detail/macro_scope.hpp \
-  /usr/include/nlohmann/thirdparty/hedley/hedley.hpp \
-  /usr/include/nlohmann/detail/meta/detected.hpp \
-  /usr/include/nlohmann/detail/meta/void_t.hpp \
-  /usr/include/nlohmann/detail/input/position_t.hpp \
-  /usr/include/nlohmann/detail/meta/cpp_future.hpp \
-  /usr/include/nlohmann/detail/meta/identity_tag.hpp \
-  /usr/include/nlohmann/detail/meta/type_traits.hpp \
-  /usr/include/nlohmann/detail/iterators/iterator_traits.hpp \
-  /usr/include/nlohmann/detail/meta/call_std/begin.hpp \
-  /usr/include/nlohmann/detail/meta/call_std/end.hpp \
-  /usr/include/nlohmann/json_fwd.hpp \
-  /usr/include/c++/11/filesystem \
-  /usr/include/c++/11/bits/fs_fwd.h \
-  /usr/include/c++/11/bits/fs_path.h \
-  /usr/include/c++/11/locale \
-  /usr/include/c++/11/bits/locale_facets_nonio.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
-  /usr/include/libintl.h \
-  /usr/include/c++/11/bits/codecvt.h \
-  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/11/bits/locale_conv.h \
-  /usr/include/c++/11/iomanip \
-  /usr/include/c++/11/bits/quoted_string.h \
-  /usr/include/c++/11/codecvt \
-  /usr/include/c++/11/bits/fs_dir.h \
-  /usr/include/c++/11/bits/fs_ops.h \
-  /usr/include/nlohmann/detail/conversions/to_json.hpp \
-  /usr/include/nlohmann/detail/iterators/iteration_proxy.hpp \
-  /usr/include/nlohmann/byte_container_with_subtype.hpp \
-  /usr/include/nlohmann/detail/hash.hpp \
-  /usr/include/nlohmann/detail/input/binary_reader.hpp \
-  /usr/include/nlohmann/detail/input/input_adapters.hpp \
-  /usr/include/nlohmann/detail/input/json_sax.hpp \
-  /usr/include/nlohmann/detail/input/lexer.hpp \
-  /usr/include/nlohmann/detail/meta/is_sax.hpp \
-  /usr/include/nlohmann/detail/input/parser.hpp \
-  /usr/include/nlohmann/detail/iterators/internal_iterator.hpp \
-  /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp \
-  /usr/include/nlohmann/detail/iterators/iter_impl.hpp \
-  /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
-  /usr/include/nlohmann/detail/json_pointer.hpp \
-  /usr/include/nlohmann/detail/json_ref.hpp \
-  /usr/include/nlohmann/detail/output/binary_writer.hpp \
-  /usr/include/nlohmann/detail/output/output_adapters.hpp \
-  /usr/include/nlohmann/detail/output/serializer.hpp \
-  /usr/include/nlohmann/detail/conversions/to_chars.hpp \
-  /usr/include/nlohmann/ordered_map.hpp \
-  /usr/include/nlohmann/detail/macro_unscope.hpp \
-  /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
+  /usr/include/c++/11/thread
 
 
 ../src/server/websocket_session.cpp:

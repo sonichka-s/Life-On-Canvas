@@ -9,6 +9,7 @@
 #include <boost/beast/websocket.hpp>
 #include <boost/asio/dispatch.hpp>
 #include <boost/asio/strand.hpp>
+#include <nlohmann/json.hpp>
 #include <callbacks.h>
 
 namespace beast = boost::beast;
@@ -16,6 +17,7 @@ namespace http = beast::http;
 namespace asio = boost::asio;
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
+using json = nlohmann::json;
 
 
 class websocket_session : public std::enable_shared_from_this<websocket_session> {
@@ -39,7 +41,7 @@ public:
 
         ws_.set_option(websocket::stream_base::timeout::suggested(beast::role_type::server));
         std::cout << "\n" << "Role: server";
-        
+
         ws_.set_option(websocket::stream_base::decorator([](websocket::response_type &res) {
             res.set(http::field::server,
                     std::string(BOOST_BEAST_VERSION_STRING) + "websocket-server-async");
@@ -76,7 +78,7 @@ public:
         }
 
         if (!reading) {
-            reading == true;
+            reading = true;
 
             ws_.async_read(buffer_,
                            beast::bind_front_handler(
@@ -86,6 +88,8 @@ public:
     }
 
     void on_read(beast::error_code ec, std::size_t bytes_transferred) {
+        boost::ignore_unused(bytes_transferred);
+
         std::cout << "\n" << "Read proceed";
         manager->cb.err.ec = ec;
 
@@ -106,7 +110,11 @@ public:
             manager->cb.trigger_on_error("read");
         }
 
-        auto msg = new std::string(beast::buffers_to_string(buffer_.data()));
+        std::string *msg = new std::string(beast::buffers_to_string(buffer_.data()));
+        std::cout << '\n' << *msg;
+//        json json_ = json::parse(msg->c_str());
+//        std::cout << '\n' << json_;
+
         if (msg->length() > 0)
             manager->cb.on_message(msg, this);
 

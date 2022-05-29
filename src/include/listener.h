@@ -18,17 +18,19 @@ using tcp = boost::asio::ip::tcp;
 
 class listener : public std::enable_shared_from_this<listener> {
 public:
-    server_manager* manager;
-    listener(asio::io_context& ioc,
+    server_manager *manager;
+
+    listener(asio::io_context &ioc,
              tcp::endpoint ep);
 
-    void run();
+    void run(server_manager *server_manager);
 
 private:
     void accept();
 
     void on_accept(beast::error_code, tcp::socket socket);
-    asio::io_context& ioc_;
+
+    asio::io_context &ioc_;
     tcp::acceptor acceptor_;
 };
 
