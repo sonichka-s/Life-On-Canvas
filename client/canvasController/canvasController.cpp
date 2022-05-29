@@ -11,8 +11,7 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
 
     socket = new QTcpSocket(this);
     timer = new QTimer(this);
-
-
+    
     //connect network signals
     connect(socket, SIGNAL(readyRead()),
             this, SLOT(onReadyRead()));
@@ -42,7 +41,7 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
 
 void CanvasController::initCanvas() {
 
-    socket->connectToHost("127.0.0.1", 4269);
+    socket->connectToHost("192.168.1.10", 8080);
 
     if(socket->waitForConnected()){
 
@@ -66,8 +65,6 @@ void CanvasController::sendDiff(const std::vector<GraphicsItem> &diffArr) {
     std::string stringToSend = Serializer::serializeDiff(diffArr, CanvasId);
 
     QString toSend = QString::fromUtf8(stringToSend.c_str());
-    qDebug() << stringToSend.c_str();
-
 
 
     socket->write(toSend.toUtf8());
@@ -86,11 +83,11 @@ void CanvasController::sendRegularRequest() {
 
     QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
 
-   socket->write(toSend.toUtf8());
-
-   if (!socket->waitForReadyRead()){
-        qDebug() << "connection is lost";
-   }
+//   socket->write(toSend.toUtf8());
+//
+//   if (!socket->waitForReadyRead()){
+//        qDebug() << "connection is lost";
+//   }
 }
 
 void CanvasController::onReadyRead(){
@@ -99,6 +96,7 @@ void CanvasController::onReadyRead(){
 
     QByteArray response = socket->readAll();
     QString responseStr = QString(response);
+    qDebug()<<responseStr;
 
     emit responseReceived(responseStr);
 }

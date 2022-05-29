@@ -1,13 +1,13 @@
 .idea
 cmake-build-debug
-CMakeLists.txt*
+CMakeLists.txt
 draw
-main.cpp
+
 !*/CMakeLists.txt
 !*/*/CMakeLists.txt
 !client/graphicsItem/CMakeLists.txt
 src
 include
 forms
-main*
+
 draw.ico
