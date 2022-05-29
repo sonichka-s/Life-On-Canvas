@@ -66,6 +66,8 @@ void CanvasController::sendDiff(const std::vector<GraphicsItem> &diffArr) {
 
     QString toSend = QString::fromUtf8(stringToSend.c_str());
 
+    std::cout<<stringToSend<<std::endl;
+    qDebug()<< toSend;
 
     socket->write(toSend.toUtf8());
 
@@ -83,11 +85,11 @@ void CanvasController::sendRegularRequest() {
 
     QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
 
-//   socket->write(toSend.toUtf8());
-//
-//   if (!socket->waitForReadyRead()){
-//        qDebug() << "connection is lost";
-//   }
+   socket->write(toSend.toUtf8());
+
+   if (!socket->waitForReadyRead()){
+        qDebug() << "connection is lost";
+   }
 }
 
 void CanvasController::onReadyRead(){
