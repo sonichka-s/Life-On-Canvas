@@ -72,6 +72,6 @@ void listener::on_accept(beast::error_code, tcp::socket socket) {
     }
 
     std::cout << "\n" << "Create the session and run it";
-    std::make_shared<websocket_session>(std::move(socket))->run(manager);
+    std::make_shared<websocket_session>(std::move(socket), manager)->run();
     accept();
 }

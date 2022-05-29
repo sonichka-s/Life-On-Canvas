@@ -29,14 +29,24 @@ public:
     bool writing = false;
 
     explicit
-    websocket_session(tcp::socket &&socket) : ws_(std::move(socket)) {}
-
-    void run(server_manager *manager) {
-        std::cout << "\n" << "Run session";
+    websocket_session(tcp::socket &&socket, server_manager *manager) : ws_(std::move(socket)), manager(manager) {
+        response_queue = new std::vector<std::string>();
         sessionID = (uint64_t) std::time(nullptr);
 
-        this->manager = manager;
-        response_queue = new std::vector<std::string>();
+    }
+
+    void run() {
+//        this->manager = manager;
+
+        asio::dispatch(ws_.get_executor(),
+                       beast::bind_front_handler(
+                               &websocket_session::on_run,
+                               shared_from_this()));
+    }
+
+    void on_run() {
+        std::cout << "\n" << "Run session";
+
         std::cout << "\n" << "Manager initialized";
 
         ws_.set_option(websocket::stream_base::timeout::suggested(beast::role_type::server));
@@ -55,7 +65,7 @@ public:
     }
 
     void on_accept(beast::error_code ec) {
-        std::cout << "\n" << "Accept connection";
+        std::cout << "\n" << "Accept connection" << ec;
 
         if (ec) {
             manager->cb.trigger_on_error("accept");
