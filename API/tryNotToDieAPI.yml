@@ -1,0 +1,157 @@
+swagger: "2.0"
+info:
+  description: "bebras"
+  version: "1.0.0"
+  title: "Life on Canvas"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+schemes:
+- "https"
+- "http"
+paths:
+  /create:
+    post:
+      tags:
+      - "canvas"
+      summary: "Add a new canvas"
+      description: ""
+      operationId: "createCanvas"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Returns the created canvas id"
+          schema:
+            type: "integer"
+            format: "int64"
+        "405":
+          description: "Invalid input"
+  /canvas/{canvasId}:
+    get:
+      tags:
+      - "canvas"
+      summary: "Find canvas by ID"
+      description: "Returns a canvas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "canvasId"
+        in: "path"
+        description: "ID of canvas to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Canvas"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Canvas not found"
+    put:
+      tags:
+      - "canvas"
+      summary: "Change current canvas"
+      description: "Request to change some pixel array"
+      operationId: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "canvasId"
+        in: "path"
+        description: "ID of canvas to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Changed pixels array"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/Pixel"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid input"
+    delete:
+      tags:
+      - "canvas"
+      summary: "Delete Canvas by id"
+      description: "Deletes the Canvas"
+      operationId: "deleteCanvas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "canvasId"
+        in: "path"
+        description: "Canvas id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Canvas not found"
+definitions:
+  Color:
+    type: "object"
+    properties:
+      r:
+        type: "integer"
+        format: "int64"
+      g:
+        type: "integer"
+        format: "int64"
+      b:
+        type: "integer"
+        format: "int64"
+      a:
+        type: "integer"
+        format: "int64"
+  Position:
+    type: "object"
+    properties:
+      x:
+        type: "integer"
+        format: "int64"
+      y:
+        type: "integer"
+        format: "int64"
+  Pixel:
+    type: "object"
+    properties:
+      position:
+        type: "object"
+        $ref: "#/definitions/Position"
+      color:
+        type: "object"
+        $ref: "#/definitions/Color"
+  Canvas:
+    type: "object"
+    properties:
+        id:
+          type: "integer"
+          format: "int64"
+        canvas:
+          type: "array"
+          items:
+            $ref: "#/definitions/Pixel"
+ 

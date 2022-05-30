@@ -1,0 +1,2 @@
+/usr/bin/ar qc libserver_lib.a CMakeFiles/server_lib.dir/server/callbacks.cpp.o CMakeFiles/server_lib.dir/server/deserializer.cpp.o CMakeFiles/server_lib.dir/server/listener.cpp.o CMakeFiles/server_lib.dir/server/request_handler.cpp.o CMakeFiles/server_lib.dir/server/thread_controller.cpp.o CMakeFiles/server_lib.dir/server/utility.cpp.o CMakeFiles/server_lib.dir/server/websocket_session.cpp.o
+/usr/bin/ranlib libserver_lib.a
