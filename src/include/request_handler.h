@@ -5,9 +5,12 @@
 #ifndef MAIN_CPP_REQUEST_HANDLER_H
 #define MAIN_CPP_REQUEST_HANDLER_H
 
-#include <callbacks.h>
-#include <nlohmann/json.hpp>
 #include <iostream>
+
+#include <nlohmann/json.hpp>
+
+#include <callbacks.h>
+#include <server-storage.h>
 
 class request_handler {
 public:
@@ -21,6 +24,7 @@ public:
                     json data = json::parse(json_.dump());
                     std::cout << "\n" << "GET request handled";
 
+                    IntoDB(data)
                     //add DB request
                 });
 
@@ -31,6 +35,7 @@ public:
                     std::cout << "\n" << "POST request handled";
 
                     //add DB request
+                    json data_ = FromDB(data);
                     prepare_respond(data_);
                 });
 
