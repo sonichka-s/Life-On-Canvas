@@ -65,7 +65,7 @@ public:
     }
 
     void on_accept(beast::error_code ec) {
-        std::cout << "\n" << "Accept connection" << ec;
+        std::cout << "\n" << "Accept connection" << '\n' << ec.message();
 
         if (ec) {
             manager->cb.trigger_on_error("accept");
@@ -175,7 +175,7 @@ public:
 
 private:
     beast::flat_buffer buffer_;
-    websocket::stream<tcp::socket> ws_;
+    websocket::stream<beast::tcp_stream> ws_;
 };
 
 
