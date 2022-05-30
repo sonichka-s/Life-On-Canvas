@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
     };
 
     tc->manager->cb.on_close = []() -> void {
-        std::cout << "[WS] Session closed: <reason>" << std::endl;
+        std::cout << "[WS] Session closed" << std::endl;
     };
 
 

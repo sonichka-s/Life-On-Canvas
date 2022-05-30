@@ -86,7 +86,7 @@ public:
             std::vector<std::string> q = *response_queue;
             this->do_write(q[0]);
         }
-
+        
         if (!reading) {
             reading = true;
 
@@ -162,13 +162,18 @@ public:
             return;
         }
 
-        if (response_queue->size() > 0) {
+        std::cout << "\n" << "Queue size: " << response_queue->size();
+
+        if (response_queue->size() > 0 && writing == true) {
             response_queue->erase(response_queue->begin());
             std::cout << "\n" << "Session erased";
             std::vector<std::string> q = *response_queue;
+            writing = false;
             if (response_queue->size() > 0)
                 this->do_write(q[0]);
-        } else {
+        }
+
+        else {
             writing = false;
         }
     }

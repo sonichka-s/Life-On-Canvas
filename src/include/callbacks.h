@@ -63,9 +63,9 @@ struct ws_callbacks {
 };
 
 struct server_manager {
-    std::string ip = "192.168.1.10";
+    std::string ip = "172.25.115.220";
     int port = 8080;
-    int threads = 2;
+    int threads = 1;
     ws_callbacks cb;
     std::vector<void *> *sessions;
 };
