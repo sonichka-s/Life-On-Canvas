@@ -2,20 +2,23 @@
 
 #include "canvasController.h"
 
+#include <boost/asio.hpp>
 #include <nlohmann/json.hpp>
 #include <QTimer>
 
 
-
 CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), mainScene( mainScene_){
 
-    socket = new QTcpSocket(this);
+    socket = new QWebSocket(nullptr);
     timer = new QTimer(this);
 
 
     //connect network signals
-    connect(socket, SIGNAL(readyRead()),
-            this, SLOT(onReadyRead()));
+    //connect(socket, SIGNAL(readyRead()),
+      //      this, SLOT(onReadyRead()));
+
+    connect(socket, SIGNAL(textMessageReceived(const QString &)),
+                           this, SLOT(onResponseReceived(const QString & )));
 
     connect(this, SIGNAL(responseReceived(QString)),
             this, SLOT(onResponseReceived(QString)));
@@ -38,21 +41,28 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
             this, SLOT(onMouseReleasedSingleLine(QGraphicsLineItem* )));
     connect(mainScene, SIGNAL(mouseReleasedRectangle(QGraphicsRectItem* )),
             this, SLOT(onMouseReleasedRectangle(QGraphicsRectItem* )));
+
+
 }
 
 void CanvasController::initCanvas() {
+    socket->open(QUrl("ws://192.168.1.10:8080"));
 
-    socket->connectToHost("127.0.0.1", 4269);
+//    boost::asio::io_context ioc;
+//
+//    WebSocketSession* ws = new WebSocketSession(ioc);
 
-    if(socket->waitForConnected()){
 
-        this->setTimer(timer);
-
-        qDebug() << "Connected!";
-    } else {
-
-        qDebug() << "Not connected!";
-    }
+//
+//    if(socket->bytesToWrite()){
+//
+//        this->setTimer(timer);
+//
+//        qDebug() << "Connected!";
+//    } else {
+//
+//        qDebug() << "Not connected!";
+//    }
 
 }
 
@@ -65,17 +75,22 @@ void CanvasController::sendDiff(const std::vector<GraphicsItem> &diffArr) {
 
     std::string stringToSend = Serializer::serializeDiff(diffArr, CanvasId);
 
-    QString toSend = QString::fromUtf8(stringToSend.c_str());
-    qDebug() << stringToSend.c_str();
+    QString qToSend = QString::fromUtf8(stringToSend.c_str());
+//    std::string toSend = qToSend.toStdString();
+    QByteArray data = qToSend.toUtf8();
 
+    socket->sendTextMessage(qToSend);
 
+    const char* bytes = data.constData();
+    int bytesWritten = 0;
+//    while (bytesWritten < data.size()) {
+//        bytesWritten += socket->write(bytes + bytesWritten);
+//    }
 
-    socket->write(toSend.toUtf8());
-
-    if (!socket->waitForReadyRead()){
-
-        qDebug() << "connection is lost";
-    }
+//    if (!socket->waitForReadyRead()){
+//
+//        qDebug() << "connection is lost";
+//    }
 }
 
 void CanvasController::sendRegularRequest() {
@@ -86,21 +101,21 @@ void CanvasController::sendRegularRequest() {
 
     QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
 
-   socket->write(toSend.toUtf8());
-
-   if (!socket->waitForReadyRead()){
-        qDebug() << "connection is lost";
-   }
+//   socket->write(toSend.toUtf8());
+//
+//   if (!socket->waitForReadyRead()){
+//        qDebug() << "connection is lost";
+//   }
 }
 
 void CanvasController::onReadyRead(){
 
-    qDebug() << "Reading: " << socket->bytesAvailable();
-
-    QByteArray response = socket->readAll();
-    QString responseStr = QString(response);
-
-    emit responseReceived(responseStr);
+//    qDebug() << "Reading: " << socket->bytesAvailable();
+//
+//    QByteArray response = socket->readAll();
+//    QString responseStr = QString(response);
+//
+//    emit responseReceived(responseStr);
 }
 
 void CanvasController:: onResponseReceived(const QString &responseStr) {
