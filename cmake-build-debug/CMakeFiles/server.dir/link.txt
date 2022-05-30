@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/server.dir/main/main.cpp.o -o server  src/libserver_lib.a 
