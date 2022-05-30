@@ -25,13 +25,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 15,
+				"line" : 9,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
 				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 18,
 				"parent" : 0
 			}
 		]
@@ -53,6 +59,18 @@
 				{
 					"backtrace" : 2,
 					"path" : "/home/sonichka/Documents/Life-On-Canvas/src/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/sonichka/Documents/Life-On-Canvas/storage/SQLController"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/sonichka/Documents/Life-On-Canvas/storage/graphicsItem"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/sonichka/Documents/Life-On-Canvas/storage/JSONController"
 				}
 			],
 			"language" : "CXX",

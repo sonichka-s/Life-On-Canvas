@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_server: phony || cmake_object_order_depe
 build CMakeFiles/server.dir/main/main.cpp.o: CXX_COMPILER__server_Debug /home/sonichka/Documents/Life-On-Canvas/main/main.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles/server.dir/main/main.cpp.o.d
   FLAGS = -g -std=gnu++20
-  INCLUDES = -I/home/sonichka/Documents/Life-On-Canvas/src/include
+  INCLUDES = -I/home/sonichka/Documents/Life-On-Canvas/src/include -I/home/sonichka/Documents/Life-On-Canvas/storage/SQLController -I/home/sonichka/Documents/Life-On-Canvas/storage/graphicsItem -I/home/sonichka/Documents/Life-On-Canvas/storage/JSONController
   OBJECT_DIR = CMakeFiles/server.dir
   OBJECT_FILE_DIR = CMakeFiles/server.dir/main
 
