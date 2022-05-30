@@ -13,12 +13,12 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
     timer = new QTimer(this);
 
 
-    //connect network signals
-    //connect(socket, SIGNAL(readyRead()),
-      //      this, SLOT(onReadyRead()));
 
     connect(socket, SIGNAL(textMessageReceived(const QString &)),
                            this, SLOT(onResponseReceived(const QString & )));
+
+    connect(socket, SIGNAL(connected()),
+            this, SLOT(onConnected()));
 
     connect(this, SIGNAL(responseReceived(QString)),
             this, SLOT(onResponseReceived(QString)));
@@ -46,51 +46,33 @@ CanvasController::CanvasController(QGraphicsScene* mainScene_): CanvasId ( 0 ), 
 }
 
 void CanvasController::initCanvas() {
-    socket->open(QUrl("ws://192.168.1.10:8080"));
+    socket->open(QUrl("ws://172.25.115.220:8080"));
 
-//    boost::asio::io_context ioc;
-//
-//    WebSocketSession* ws = new WebSocketSession(ioc);
-
-
-//
-//    if(socket->bytesToWrite()){
-//
-//        this->setTimer(timer);
-//
-//        qDebug() << "Connected!";
-//    } else {
-//
-//        qDebug() << "Not connected!";
-//    }
 
 }
+
+
 
 void CanvasController::setTimer(QTimer* timer) {
 
     timer->start(100);
 }
 
+void CanvasController::onConnected() {
+    setTimer(timer);
+}
+
+
 void CanvasController::sendDiff(const std::vector<GraphicsItem> &diffArr) {
 
     std::string stringToSend = Serializer::serializeDiff(diffArr, CanvasId);
 
     QString qToSend = QString::fromUtf8(stringToSend.c_str());
-//    std::string toSend = qToSend.toStdString();
+
     QByteArray data = qToSend.toUtf8();
 
     socket->sendTextMessage(qToSend);
 
-    const char* bytes = data.constData();
-    int bytesWritten = 0;
-//    while (bytesWritten < data.size()) {
-//        bytesWritten += socket->write(bytes + bytesWritten);
-//    }
-
-//    if (!socket->waitForReadyRead()){
-//
-//        qDebug() << "connection is lost";
-//    }
 }
 
 void CanvasController::sendRegularRequest() {
@@ -101,26 +83,18 @@ void CanvasController::sendRegularRequest() {
 
     QString toSend = QString::fromUtf8(jsonToSend.dump().c_str());
 
-//   socket->write(toSend.toUtf8());
-//
-//   if (!socket->waitForReadyRead()){
-//        qDebug() << "connection is lost";
-//   }
+    //qDebug() << toSend;
+
+    socket->sendTextMessage(toSend);
 }
 
-void CanvasController::onReadyRead(){
 
-//    qDebug() << "Reading: " << socket->bytesAvailable();
-//
-//    QByteArray response = socket->readAll();
-//    QString responseStr = QString(response);
-//
-//    emit responseReceived(responseStr);
-}
 
 void CanvasController:: onResponseReceived(const QString &responseStr) {
 
     std::string responseToParse = responseStr.toStdString();
+
+    std::cout << responseToParse << std::endl;
 
     CanvasId = Serializer::parseId(responseToParse);
 
@@ -228,3 +202,4 @@ CanvasController::~CanvasController(){
     delete socket;
     delete timer;
 }
+
