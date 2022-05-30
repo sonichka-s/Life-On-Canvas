@@ -9,10 +9,7 @@ add_subdirectory(storage)
 add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/main/main.cpp)
 
 find_package(SQLite3)
-
-include_directories(${SQLite3_INCLUDE_DIRS})
 target_link_libraries(server LINK_PUBLIC sqlite3)
-
 
 target_link_libraries(server PUBLIC server_lib)
 target_link_libraries(server PUBLIC SQLController JSONController graphicsItem)
