@@ -1,2 +1,3 @@
-# Life-On-Canvas
-НЕ (!) HTTP-сервер
+# "Life On Canvas"
+Online drawing service.
+TP c++ project, spring 2022.
