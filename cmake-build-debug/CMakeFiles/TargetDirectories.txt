@@ -1,0 +1,14 @@
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles/server.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/CMakeFiles/server_lib.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/graphicsItem/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/graphicsItem/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/JSONController/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/JSONController/CMakeFiles/rebuild_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/SQLController/CMakeFiles/edit_cache.dir
+/home/sonichka/Documents/Life-On-Canvas/cmake-build-debug/storage/SQLController/CMakeFiles/rebuild_cache.dir

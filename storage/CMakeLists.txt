@@ -1,5 +1,3 @@
 add_subdirectory(graphicsItem)
-
 add_subdirectory(JSONController)
-
 add_subdirectory(SQLController)

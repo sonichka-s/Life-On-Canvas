@@ -1,3 +1,3 @@
-add_library(graphicsItem GraphicsItem.h)
+add_library(graphicsItem INTERFACE)
 
-target_include_directories(graphicsItem PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(graphicsItem INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,5 +1,5 @@
-add_library(JSONController server-storage.h json.hpp)
+add_library(JSONController INTERFACE)
 
-target_include_directories(JSONController PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(JSONController INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(JSONController graphicsItem SQLController)
+target_link_libraries(JSONController INTERFACE graphicsItem SQLController)
