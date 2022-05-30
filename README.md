@@ -1,3 +1,3 @@
-# Life-On-Canvas
-
-It will be implemented using MongoDB and its driver for C++
+# "Life On Canvas"
+Online drawing service.
+TP c++ project, spring 2022.
